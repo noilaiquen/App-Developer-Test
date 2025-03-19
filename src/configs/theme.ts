@@ -68,7 +68,7 @@ const BaseColors = {
   GRAY_BACKGROUND: '#E5E5E5',
   GRAY: '#F3F3F3',
   SOLITUDE: '#E5EDFF',
-  ALTO: '#CECECE',
+  ALTO: '#E3E3E3',
   BLACK: '#000000',
   TUNDORA: '#444444',
   EMPEROR: '#545454',

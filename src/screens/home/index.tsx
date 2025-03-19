@@ -41,7 +41,7 @@ const HomeScreen: React.FC = () => {
         refreshControl={
           <RefreshControl refreshing={false} onRefresh={actions.getMovies} />
         }
-        numColumns={2}
+        // numColumns={2}
         data={movies}
         extraData={[movies]}
         renderItem={renderItem}
@@ -61,6 +61,6 @@ export default React.memo(HomeScreen);
 
 const styles = StyleSheet.create({
   listContainer: {
-    padding: size.spacing.lg,
+    padding: size.spacing.xxl,
   },
 });

@@ -2,13 +2,12 @@ import React, {FC} from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import size from '../../configs/size';
-import {BaseColors, useTheme} from '../../configs/theme';
+import {BaseColors} from '../../configs/theme';
 import {MOVIE_ITEM_HEIGHT, MOVIE_ITEM_WIDTH} from '../../constants';
 import {Movie} from '../../types';
 import {getRemoteImageSrc} from '../../utils';
 import {Text} from '../common/Text';
 import {View} from '../common/View';
-import {Score} from './Score';
 
 export interface MovieItemProps {
   movie: Movie;
@@ -17,37 +16,35 @@ export interface MovieItemProps {
 }
 
 export const MovieItem: FC<MovieItemProps> = ({movie, index, onPress}) => {
-  const {colors} = useTheme();
+  console.log('MovieItem', movie);
 
   return (
-    <TouchableOpacity activeOpacity={0.8} onPress={() => onPress(movie)}>
+    <TouchableOpacity
+      style={styles.container}
+      activeOpacity={0.8}
+      onPress={() => onPress(movie)}>
       <View
         olh
+        row
+        centerH
+        bgColor
         width={MOVIE_ITEM_WIDTH}
         height={MOVIE_ITEM_HEIGHT}
-        br={size.radius.md}
-        mb={size.spacing.xl}
-        mr={index % 2 === 0 ? size.spacing.lg : 0}>
+        br={size.radius.sm}>
         <FastImage
           style={styles.imageBg}
           source={{uri: getRemoteImageSrc(movie.poster_path)}}
         />
-        <View bgColor>
-          <View
-            style={[
-              styles.progressContainer,
-              {backgroundColor: colors.primary},
-            ]}>
-            <Score score={parseFloat((movie.vote_average * 0.1).toFixed(1))} />
-          </View>
-          <View height={90} bgColor>
-            <Text numberOfLines={2} title bold mt={size.spacing.xl}>
-              {movie.title}
-            </Text>
-            <Text caption color={BaseColors.BOULDER}>
-              {movie.release_date}
-            </Text>
-          </View>
+        <View flex={1} height={'100%'} centerV ph={size.spacing.xl}>
+          <Text numberOfLines={2} title bold>
+            {movie.title}
+          </Text>
+          <Text caption color={BaseColors.BOULDER}>
+            {movie.release_date}
+          </Text>
+          <Text numberOfLines={2} mt={size.spacing.xl}>
+            {movie.overview}
+          </Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -55,9 +52,20 @@ export const MovieItem: FC<MovieItemProps> = ({movie, index, onPress}) => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    shadowColor: BaseColors.ALTO,
+    shadowOffset: {
+      width: 2,
+      height: 2,
+    },
+    shadowRadius: 4,
+    shadowOpacity: 0.9,
+    elevation: 5,
+    marginBottom: size.spacing.xl,
+  },
   imageBg: {
-    height: MOVIE_ITEM_HEIGHT - 90,
-    width: MOVIE_ITEM_WIDTH,
+    height: '100%',
+    width: 95,
   },
   progressContainer: {
     width: 40,

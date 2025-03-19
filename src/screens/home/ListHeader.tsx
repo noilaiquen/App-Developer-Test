@@ -24,15 +24,12 @@ const ListHeader: React.FC<ListHeaderProps> = () => {
     }, 700);
   };
   return (
-    <View pv={size.spacing.sm}>
+    <View pv={size.spacing.md}>
       <Searchbar
         value={keyword}
         placeholder="Search movies"
         onChangeText={onChangeText}
       />
-      <Text headline bold mt={size.spacing.lg}>
-        {keyword.length > 0 ? 'Search results' : 'Popular movies'}
-      </Text>
     </View>
   );
 };

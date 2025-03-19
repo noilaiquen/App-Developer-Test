@@ -29,7 +29,7 @@ interface ViewProps {
   centerH?: boolean;
   centerV?: boolean;
   olh?: boolean;
-  style?: object;
+  style?: StyleProp<ViewStyle>;
   children?: React.ReactNode;
   onLayout?: (event: any) => void;
 }
