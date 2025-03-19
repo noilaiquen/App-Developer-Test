@@ -7726,6 +7726,7 @@ __metadata:
     redux: 4.0.5
     redux-logger: ^3.0.6
     redux-persist: 6.0.0
+    redux-persist-transform-filter: ^0.0.22
     redux-thunk: 2.3.0
     typescript: 5.0.4
   languageName: unknown
@@ -8902,6 +8903,18 @@ __metadata:
   dependencies:
     deep-diff: ^0.3.5
   checksum: c40f63c44c6475cf6374ae0eaa810d913f142614cb80692a0beacaf135c5dc3eb3e2cdd4296f01446ba48cb69b82e81363b84d829f1f6659382c991022a814ac
+  languageName: node
+  linkType: hard
+
+"redux-persist-transform-filter@npm:^0.0.22":
+  version: 0.0.22
+  resolution: "redux-persist-transform-filter@npm:0.0.22"
+  dependencies:
+    lodash: ^4.17.21
+  peerDependencies:
+    redux: ">3.0.0"
+    redux-persist: ^3.4.0 || ^4 || ^5 || ^6
+  checksum: be19c506c879e01acfb2b996d91a44a8065ec2d97d593635b6f1d6e061446230efbf9350fa2e0e53bddeb500abb5a353b20e4d8c8655fcc7f19d677b924687ca
   languageName: node
   linkType: hard
 

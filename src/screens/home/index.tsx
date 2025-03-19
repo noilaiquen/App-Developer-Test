@@ -6,11 +6,15 @@ import {MovieItem, RootView} from '../../components';
 import size from '../../configs/size';
 import {ROUTES} from '../../constants';
 import {useActions} from '../../hooks';
-import {getMovies} from '../../store/reducers/movie/actions';
-import {getMoviesSelector} from '../../store/reducers/movie/selectors';
+import {getMovies, refreshMovies} from '../../store/reducers/movie/actions';
+import {
+  getMoviesSelector,
+  getNextPageSelector,
+} from '../../store/reducers/movie/selectors';
 import {Movie} from '../../types';
 import ListEmpty from './ListEmpty';
 import ListHeader from './ListHeader';
+import LoadMoreBtn from './LoadMoreBtn';
 
 type ListItemProps = {
   item: Movie;
@@ -18,17 +22,22 @@ type ListItemProps = {
 };
 
 const HomeScreen: React.FC = () => {
-  const navigation = useNavigation();
+  const {navigate} = useNavigation();
   const movies = useSelector(getMoviesSelector);
-  const actions = useActions({getMovies});
+  const nextPage = useSelector(getNextPageSelector);
+  const actions = useActions({getMovies, refreshMovies});
 
   const navigateToDetail = useCallback((movie: Movie) => {
     Keyboard.dismiss();
-    navigation.navigate(ROUTES.MOVE_DETAIL_SCREEN, {movie});
+    navigate(ROUTES.MOVE_DETAIL_SCREEN, {movie});
   }, []);
 
+  const onLoadMore = useCallback(() => {
+    actions.getMovies(nextPage);
+  }, [nextPage]);
+
   useEffect(() => {
-    actions.getMovies();
+    actions.getMovies(nextPage);
   }, []);
 
   const renderItem = useCallback(({item, index}: ListItemProps) => {
@@ -39,19 +48,22 @@ const HomeScreen: React.FC = () => {
     <RootView>
       <FlatList
         refreshControl={
-          <RefreshControl refreshing={false} onRefresh={actions.getMovies} />
+          <RefreshControl
+            refreshing={false}
+            onRefresh={actions.refreshMovies}
+          />
         }
-        // numColumns={2}
         data={movies}
         extraData={[movies]}
         renderItem={renderItem}
         keyboardDismissMode="on-drag"
         keyboardShouldPersistTaps="always"
-        ListHeaderComponent={<ListHeader />}
         showsVerticalScrollIndicator={false}
-        ListEmptyComponent={<ListEmpty />}
         keyExtractor={item => item.id.toString()}
         contentContainerStyle={styles.listContainer}
+        ListEmptyComponent={<ListEmpty />}
+        ListHeaderComponent={<ListHeader />}
+        ListFooterComponent={<LoadMoreBtn onPress={onLoadMore} />}
       />
     </RootView>
   );

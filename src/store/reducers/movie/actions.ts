@@ -1,11 +1,19 @@
 import MovieApi from '../../../services/apis/movie';
 import {Movie, ResponseList} from '../../../types';
 import {createAsyncDispatch} from '../../../utils';
-import {GET_MOVIES, SEARCH_MOVIES} from './actionsType';
+import {REFRESH_MOVIES, GET_MOVIES, SEARCH_MOVIES} from './actionsType';
 
-export const getMovies = () =>
+export const refreshMovies = () =>
+  createAsyncDispatch(REFRESH_MOVIES.ORIGIN)({
+    action: () => MovieApi.getMovies(1),
+    handler: (data: ResponseList<Movie>) => {
+      const {results} = data;
+      return results;
+    },
+  });
+export const getMovies = (page: number = 1) =>
   createAsyncDispatch(GET_MOVIES.ORIGIN)({
-    action: MovieApi.getMovies,
+    action: () => MovieApi.getMovies(page),
     handler: (data: ResponseList<Movie>) => {
       const {results} = data;
       return results;

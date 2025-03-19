@@ -5,7 +5,7 @@ import size from '../../configs/size';
 import {BaseColors} from '../../configs/theme';
 import {MOVIE_ITEM_HEIGHT, MOVIE_ITEM_WIDTH} from '../../constants';
 import {Movie} from '../../types';
-import {getRemoteImageSrc} from '../../utils';
+import {getRemoteImageSrc, scale} from '../../utils';
 import {Text} from '../common/Text';
 import {View} from '../common/View';
 
@@ -16,8 +16,6 @@ export interface MovieItemProps {
 }
 
 export const MovieItem: FC<MovieItemProps> = ({movie, index, onPress}) => {
-  console.log('MovieItem', movie);
-
   return (
     <TouchableOpacity
       style={styles.container}
@@ -29,7 +27,7 @@ export const MovieItem: FC<MovieItemProps> = ({movie, index, onPress}) => {
         centerH
         bgColor
         width={MOVIE_ITEM_WIDTH}
-        height={MOVIE_ITEM_HEIGHT}
+        height={scale(MOVIE_ITEM_HEIGHT)}
         br={size.radius.sm}>
         <FastImage
           style={styles.imageBg}
@@ -62,23 +60,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.9,
     elevation: 5,
     marginBottom: size.spacing.xl,
+    backgroundColor: BaseColors.WHITE,
   },
   imageBg: {
     height: '100%',
-    width: 95,
-  },
-  progressContainer: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    position: 'absolute',
-    bottom: 70,
-    left: 10,
-    zIndex: 10,
-  },
-  progressText: {
-    color: BaseColors.WHITE,
-    fontWeight: 'bold',
-    fontSize: 10,
+    width: scale(95),
   },
 });

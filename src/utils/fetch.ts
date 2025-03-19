@@ -21,6 +21,7 @@ instance.interceptors.request.use(
       config.headers['authorization'] = `Bearer ${jwtToken}`;
     }
 
+    console.log(JSON.stringify(config.url, null, 2));
     return config;
   },
   error => {

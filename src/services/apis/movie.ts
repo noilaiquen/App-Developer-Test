@@ -10,8 +10,10 @@ import {
 import {Fetch} from '../../utils';
 
 export default class MovieApi {
-  static getMovies(): Promise<ResponseList<Movie>> {
-    return Fetch.get(`/movie/popular?language=en-US&page=1&api_key=${API_KEY}`);
+  static getMovies(page: number): Promise<ResponseList<Movie>> {
+    return Fetch.get(
+      `/movie/popular?language=en-US&page=${page}&api_key=${API_KEY}`,
+    );
   }
 
   static searchMovies(query: string): Promise<ResponseList<Movie>> {

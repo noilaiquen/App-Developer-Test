@@ -73,7 +73,7 @@ const BaseColors = {
   TUNDORA: '#444444',
   EMPEROR: '#545454',
   BOULDER: '#848484',
-  BEANSTALKS: '#081c22',
+  BEANSTALKS: '#00B4E4',
   SCARLET: '#eb2f06',
   CRIMSON: '#ef233c',
   CORNFLOWER_BLUE: '#5493F2',
