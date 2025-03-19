@@ -19,7 +19,7 @@ export const HeaderCenter = (): JSX.Element => {
 
 const styles = StyleSheet.create({
   image: {
-    width: scale(100),
-    height: scale(50),
+    width: scale(80),
+    height: scale(57),
   },
 });

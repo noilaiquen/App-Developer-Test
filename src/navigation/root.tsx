@@ -4,7 +4,7 @@ import {
   createNativeStackNavigator,
 } from 'react-native-screens/native-stack';
 import {HeaderCenter} from '../components';
-import {useTheme} from '../configs/theme';
+import {BaseColors, useTheme} from '../configs/theme';
 import {ROUTES} from '../constants';
 import HomeScreen from '../screens/home/index';
 import MovieDetail from '../screens/movieDetail/index';
@@ -21,7 +21,8 @@ export const RootNavigation = (): JSX.Element => {
     statusBarColor: colors.primary,
     replaceAnimation: 'push',
     headerCenter: () => <HeaderCenter />,
-    headerStyle: {backgroundColor: colors.primary},
+    headerHideShadow: true,
+    headerStyle: {backgroundColor: BaseColors.WHITE},
   };
 
   return (
