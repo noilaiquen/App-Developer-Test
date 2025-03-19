@@ -1,0 +1,34 @@
+{
+  "presets": ["@babel/preset-typescript"],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["./"],
+        "extensions": [".ios.ts", ".android.ts", ".ts", ".tsx", ".json"],
+        "alias": {
+          "moti/skeleton": "moti/skeleton/react-native-linear-gradient",
+          "store": "./src/store/",
+          "assets": "./src/assets/",
+          "components": "./src/components/",
+          "configs": "./src/configs/",
+          "screens": "./src/screens/",
+          "hooks": "./src/hooks/",
+          // "lang": "./src/lang/",
+          "navigation": "./src/navigation/",
+          "services": "./src/services/",
+          "utils": "./src/utils/"
+        }
+      }
+    ],
+    "react-native-reanimated/plugin",
+    "@babel/plugin-transform-export-namespace-from",
+    "react-native-paper/babel",
+    [
+      "babel-plugin-inline-import",
+      {
+        "extensions": [".svg"]
+      }
+    ]
+  ]
+}
