@@ -5,10 +5,12 @@ import thunk from 'redux-thunk';
 import {MMKVStorage} from './mmkvStorage';
 import detailReducer from './reducers/detail';
 import movieReducer from './reducers/movie';
+import watchlistReducer from './reducers/watchlist';
 
 const rootReducer = combineReducers({
   movie: movieReducer,
   detail: detailReducer,
+  watchlist: watchlistReducer,
 });
 
 const persistConfig = {

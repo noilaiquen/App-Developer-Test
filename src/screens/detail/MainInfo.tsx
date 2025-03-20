@@ -20,8 +20,6 @@ const MainInfo: React.FC<{
   const {colors} = useTheme();
   const detail = useSelector(getDetailSelector);
 
-  console.log(JSON.stringify(detail, null, 2));
-
   return (
     <>
       <View pd={size.spacing.lg} color={colors.secondary}>

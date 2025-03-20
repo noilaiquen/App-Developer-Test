@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
-import {StyleSheet, TouchableOpacity} from 'react-native';
+import {Pressable, StyleSheet} from 'react-native';
 import FastImage from 'react-native-fast-image';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import size from '../../configs/size';
 import {BaseColors} from '../../configs/theme';
 import {MOVIE_ITEM_HEIGHT, MOVIE_ITEM_WIDTH} from '../../constants';
@@ -12,44 +13,57 @@ import {View} from '../common/View';
 export interface MovieItemProps {
   movie: Movie;
   onPress: (movie: Movie) => void;
+  onRemove?: (movie: Movie) => void;
 }
 
-export const MovieItem: FC<MovieItemProps> = ({movie, onPress}) => {
+export const MovieItem: FC<MovieItemProps> = ({movie, onPress, onRemove}) => {
   return (
-    <TouchableOpacity
-      style={styles.container}
-      activeOpacity={0.8}
-      onPress={() => onPress(movie)}>
-      <View
-        olh
-        row
-        centerH
-        bgColor
-        width={MOVIE_ITEM_WIDTH}
-        height={scale(MOVIE_ITEM_HEIGHT)}
-        br={size.radius.sm}>
-        <FastImage
-          style={styles.imageBg}
-          source={{uri: getRemoteImageSrc(movie.poster_path)}}
-        />
-        <View flex={1} height={'100%'} centerV ph={size.spacing.xl}>
-          <Text numberOfLines={2} title bold>
-            {movie.title}
-          </Text>
-          <Text caption color={BaseColors.BOULDER}>
-            {movie.release_date}
-          </Text>
-          <Text numberOfLines={2} mt={size.spacing.xl}>
-            {movie.overview}
-          </Text>
+    <Pressable
+      onPress={() => {
+        onPress(movie);
+      }}>
+      <View style={styles.container}>
+        <View
+          olh
+          row
+          centerH
+          bgColor
+          width={MOVIE_ITEM_WIDTH}
+          height={scale(MOVIE_ITEM_HEIGHT)}
+          br={size.radius.sm}>
+          <FastImage
+            style={styles.imageBg}
+            source={{uri: getRemoteImageSrc(movie.poster_path)}}
+          />
+          <View flex={1} height={'100%'} centerV ph={size.spacing.xl}>
+            <Text numberOfLines={2} title bold>
+              {movie.title}
+            </Text>
+            <Text caption color={BaseColors.BOULDER}>
+              {movie.release_date}
+            </Text>
+            <Text numberOfLines={2} mt={size.spacing.xl}>
+              {movie.overview}
+            </Text>
+          </View>
         </View>
+        {onRemove && (
+          <Pressable
+            onPress={() => {
+              onRemove(movie);
+            }}
+            style={styles.removeBtn}>
+            <Ionicons name="close" size={18} />
+          </Pressable>
+        )}
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    position: 'relative',
     shadowColor: BaseColors.ALTO,
     shadowOffset: {
       width: 2,
@@ -60,9 +74,17 @@ const styles = StyleSheet.create({
     elevation: 5,
     marginBottom: size.spacing.xl,
     backgroundColor: BaseColors.WHITE,
+    borderRadius: size.radius.sm,
   },
   imageBg: {
     height: '100%',
     width: scale(95),
+  },
+  removeBtn: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    padding: size.spacing.sm,
+    borderRadius: size.radius.sm,
   },
 });

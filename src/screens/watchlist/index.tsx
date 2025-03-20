@@ -1,17 +1,13 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useCallback} from 'react';
-import {FlatList, Keyboard, RefreshControl, StyleSheet} from 'react-native';
+import {FlatList, Keyboard, StyleSheet} from 'react-native';
 import {useSelector} from 'react-redux';
 import {Header, MovieItem, RootView} from '../../components';
 import size from '../../configs/size';
 import {ROUTES} from '../../constants';
-import {useActions, useDidUpdate} from '../../hooks';
-import {getMovies} from '../../store/reducers/movie/actions';
-import {
-  getFilterSelector,
-  getMoviesSelector,
-  getRefreshingSelector,
-} from '../../store/reducers/movie/selectors';
+import {useActions} from '../../hooks';
+import {removeFromWacthlist} from '../../store/reducers/watchlist/actions';
+import {getWatchlistSelector} from '../../store/reducers/watchlist/selectors';
 import {Movie} from '../../types';
 import {scale} from '../../utils';
 import ListEmpty from './ListEmpty';
@@ -27,22 +23,24 @@ type ListItemProps = {
 
 const WatchListScreen: React.FC = () => {
   const {navigate} = useNavigation();
-  const movies = useSelector(getMoviesSelector);
-  const filter = useSelector(getFilterSelector);
-  const isRefreshing = useSelector(getRefreshingSelector);
-  const actions = useActions({getMovies});
+  const watchlist = useSelector(getWatchlistSelector);
+  const actions = useActions({removeFromWacthlist});
+
+  const listData = Object.values(watchlist);
 
   const navigateToDetail = useCallback((movie: Movie) => {
     Keyboard.dismiss();
     navigate(ROUTES.MOVE_DETAIL_SCREEN, {movie});
   }, []);
 
-  useDidUpdate(() => {
-    actions.getMovies();
-  }, [filter]);
-
   const renderItem = useCallback(({item, index}: ListItemProps) => {
-    return <MovieItem movie={item} onPress={navigateToDetail} />;
+    return (
+      <MovieItem
+        movie={item}
+        onPress={navigateToDetail}
+        onRemove={() => actions.removeFromWacthlist(item)}
+      />
+    );
   }, []);
 
   return (
@@ -50,14 +48,8 @@ const WatchListScreen: React.FC = () => {
       <Header />
       <ProfileInfo />
       <FlatList
-        refreshControl={
-          <RefreshControl
-            refreshing={isRefreshing}
-            onRefresh={() => actions.getMovies(true)}
-          />
-        }
-        data={movies}
-        extraData={[movies]}
+        data={listData}
+        extraData={[listData]}
         renderItem={renderItem}
         keyboardDismissMode="on-drag"
         keyboardShouldPersistTaps="always"
