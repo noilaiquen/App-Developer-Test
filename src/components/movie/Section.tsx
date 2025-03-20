@@ -7,6 +7,7 @@ import size from '../../configs/size';
 
 export interface SectionProps {
   title: string;
+  titleColor?: string;
   children: any;
   pd?: number;
 }
@@ -14,11 +15,12 @@ export interface SectionProps {
 export const Section: FC<SectionProps> = ({
   title,
   children,
+  titleColor,
   pd = size.spacing.lg,
 }) => {
   return (
     <View pd={pd}>
-      <Text title bold>
+      <Text headline bold color={titleColor}>
         {title}
       </Text>
       <View mt={size.spacing.sm}>{children}</View>

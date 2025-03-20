@@ -1,11 +1,9 @@
 import {AnyAction} from 'redux';
 import {MovieDetail} from '../../../types';
 import {
-  GET_MOVIE_CAST,
+  GET_MOVIE_CREDITS,
   GET_MOVIE_DETAIL,
-  GET_MOVIE_KEYWORD,
   GET_MOVIE_RELEASE_DATE,
-  GET_MOVIE_REVIEW,
 } from './actionsType';
 
 type InitState = {
@@ -37,28 +35,15 @@ export default (state = initState, action: AnyAction) => {
         loading: false,
         movie: {},
       };
-    case GET_MOVIE_KEYWORD.SUCCESS:
+    case GET_MOVIE_CREDITS.SUCCESS:
+      const {cast, director, writer} = action.payload;
       return {
         ...state,
         movie: {
           ...state.movie,
-          keywords: action.payload,
-        },
-      };
-    case GET_MOVIE_REVIEW.SUCCESS:
-      return {
-        ...state,
-        movie: {
-          ...state.movie,
-          reviews: action.payload,
-        },
-      };
-    case GET_MOVIE_CAST.SUCCESS:
-      return {
-        ...state,
-        movie: {
-          ...state.movie,
-          cast: action.payload,
+          cast,
+          director,
+          writer,
         },
       };
     case GET_MOVIE_RELEASE_DATE.SUCCESS:

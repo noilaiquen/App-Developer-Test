@@ -10,16 +10,17 @@ import size from '../../configs/size';
 import {BaseColors} from '../../configs/theme';
 import {getDetailSelector} from '../../store/reducers/detail/selectors';
 import {getMovieDuration, getRemoteImageSrc, scale} from '../../utils';
+import Overview from './Overview';
+import WatchListBtn from './WatchListBtn';
 
 const MainInfo: React.FC<{
   postPath: string;
-  imageHeight: number;
-}> = ({postPath, imageHeight}) => {
+}> = ({postPath}) => {
   const navigation = useNavigation();
   const {colors} = useTheme();
   const detail = useSelector(getDetailSelector);
 
-  // console.log('detail', detail.certification);
+  console.log(JSON.stringify(detail, null, 2));
 
   return (
     <>
@@ -78,32 +79,54 @@ const MainInfo: React.FC<{
                 {detail.spoken_languages?.map(item => item.name).join(',')}
               </Text>
             </Text>
-            {/* <View row centerH mt={size.spacing.sm}>
-            <Score
-              score={Number(((detail?.vote_average ?? 0) * 0.1).toFixed(2))}
-            />
-            <Text color={colors.background} bold ml={size.spacing.md}>
-              User Score
-            </Text>
-          </View> */}
           </View>
         </View>
       </View>
-      <View pd={size.spacing.lg} color={colors.primary}>
+      <View
+        pd={size.spacing.xl}
+        pb={size.spacing.xxl}
+        color={colors.primary}
+        gap={20}>
         <View row>
-          <View center mt={size.spacing.sm}>
-            <Score
-              score={Number(((detail?.vote_average ?? 0) * 0.1).toFixed(2))}
-            />
-            <Text title color={colors.background} bold ml={size.spacing.md}>
-              User Score
-            </Text>
+          <View mt={size.spacing.sm}>
+            <View center>
+              <Score
+                score={Number(((detail?.vote_average ?? 0) * 0.1).toFixed(2))}
+              />
+              <Text title color={colors.background} bold>
+                User Score
+              </Text>
+            </View>
           </View>
-          <View center mt={size.spacing.sm} flex={1}>
-            <Text title color={BaseColors.WHITE} bold numberOfLines={2}>
-              {detail.tagline}
-            </Text>
+          <View center mt={size.spacing.sm} flex={1} gap={10}>
+            {detail?.director ? (
+              <View>
+                <Text title color={BaseColors.WHITE} bold numberOfLines={2}>
+                  {detail?.director?.name}
+                </Text>
+                <Text paragraph color={BaseColors.WHITE}>
+                  {detail?.director?.job}
+                </Text>
+              </View>
+            ) : null}
+            {detail?.writer ? (
+              <View>
+                <Text title color={BaseColors.WHITE} bold numberOfLines={2}>
+                  {detail?.writer?.name}
+                </Text>
+                <Text paragraph color={BaseColors.WHITE}>
+                  {detail?.writer?.job}
+                </Text>
+              </View>
+            ) : null}
           </View>
+        </View>
+        <View row>
+          <Text color={BaseColors.WHITE}>{detail?.tagline}</Text>
+        </View>
+        <Overview />
+        <View row>
+          <WatchListBtn />
         </View>
       </View>
     </>

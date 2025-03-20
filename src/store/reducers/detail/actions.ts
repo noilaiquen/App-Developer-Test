@@ -1,45 +1,28 @@
 import MovieApi from '../../../services/apis/movie';
-import {
-  Cast,
-  Keyword,
-  Movie,
-  ReleaseDate,
-  ResponseList,
-  Review,
-} from '../../../types';
+import {Credits, Movie, ReleaseDate} from '../../../types';
 import {createAsyncDispatch} from '../../../utils';
 import {
-  GET_MOVIE_CAST,
+  GET_MOVIE_CREDITS,
   GET_MOVIE_DETAIL,
-  GET_MOVIE_KEYWORD,
   GET_MOVIE_RELEASE_DATE,
-  GET_MOVIE_REVIEW,
 } from './actionsType';
 
-export const getMovieKeywords = (id: number) =>
-  createAsyncDispatch(GET_MOVIE_KEYWORD.ORIGIN)({
-    action: () => MovieApi.getMovieKeywords(id),
-    handler: (data: {keywords: Keyword[]}) => {
-      const {keywords} = data;
-      return keywords;
-    },
-  });
+export const getMovieCredits = (id: number) =>
+  createAsyncDispatch(GET_MOVIE_CREDITS.ORIGIN)({
+    action: () => MovieApi.getMovieCredits(id),
+    handler: (data: Credits) => {
+      let director = null;
+      let writer = null;
+      if (data?.crew) {
+        director = data.crew.find(c => c.job === 'Director');
+        writer = data.crew.find(c => c.job === 'Writer');
+      }
 
-export const getMovieReviews = (id: number) =>
-  createAsyncDispatch(GET_MOVIE_REVIEW.ORIGIN)({
-    action: () => MovieApi.getMovieReviews(id),
-    handler: (data: ResponseList<Review>) => {
-      const {results} = data;
-      return results;
-    },
-  });
-
-export const getMovieCasts = (id: number) =>
-  createAsyncDispatch(GET_MOVIE_CAST.ORIGIN)({
-    action: () => MovieApi.getMovieCasts(id),
-    handler: (data: {cast: Cast[]}) => {
-      const {cast} = data;
-      return cast;
+      return {
+        cast: data?.cast ?? [],
+        director,
+        writer,
+      };
     },
   });
 

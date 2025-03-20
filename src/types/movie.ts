@@ -50,6 +50,8 @@ export type MovieDetail = {
   keywords?: Keyword[];
   reviews?: Review[];
   cast?: Cast[];
+  director?: Crew;
+  writer?: Crew;
   certification?: string;
 };
 
@@ -99,6 +101,14 @@ export type Cast = {
   name: string;
   popularity: number;
   profile_path: string;
+  character: string;
+};
+
+export type Crew = {
+  id: number;
+  name: string;
+  job: string;
+  department: string;
 };
 
 export type ReleaseDate = {
@@ -111,4 +121,9 @@ export type ReleaseResult = {
   release_dates: {
     certification: string;
   }[];
+};
+
+export type Credits = {
+  cast: Cast[];
+  crew: Crew[];
 };

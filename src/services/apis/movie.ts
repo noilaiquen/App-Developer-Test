@@ -1,6 +1,7 @@
 import {API_KEY} from '../../constants';
 import {
   Cast,
+  Credits,
   Keyword,
   Movie,
   MovieDetail,
@@ -62,7 +63,7 @@ export default class MovieApi {
     );
   }
 
-  static getMovieCasts(id: number): Promise<{keywords: Cast[]}> {
+  static getMovieCredits(id: number): Promise<Credits> {
     return Fetch.get(`/movie/${id}/credits?language=en-US&api_key=${API_KEY}`);
   }
 }

@@ -12,7 +12,7 @@ export default StyleSheet.create({
     fontSize: scale(18),
   },
   paragraph: {
-    fontSize: scale(15),
+    fontSize: scale(16),
   },
   caption: {
     fontSize: scale(12),
