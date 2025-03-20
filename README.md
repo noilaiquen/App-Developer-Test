@@ -34,20 +34,6 @@ yarn install
 
 ### iOS Setup
 
-Install CocoaPods (if not already installed):
-
-```bash
-sudo gem install cocoapods
-```
-
-Or if you're using a Ruby version manager like rbenv:
-
-```bash
-gem install cocoapods
-```
-
-**Important**: You must install pods for iOS development to work:
-
 ```bash
 # Navigate to the iOS directory
 cd ios
@@ -92,12 +78,14 @@ yarn android
 ### iOS
 
 <img src="screenshots/ios-home.png" width="250" alt="iOS Home Screen">
-<img src="screenshots/ios-details.png" width="250" alt="iOS Details Screen">
+<img src="screenshots/ios-detail.png" width="250" alt="iOS Details Screen">
+<img src="screenshots/ios-watchlist.png" width="250" alt="iOS Watchlist Screen">
 
 ### Android
 
 <img src="screenshots/android-home.png" width="250" alt="Android Home Screen">
-<img src="screenshots/android-details.png" width="250" alt="Android Details Screen">
+<img src="screenshots/android-detail.png" width="250" alt="Android Details Screen">
+<img src="screenshots/android-watchlist.png" width="250" alt="Android Watchlist Screen">
 
 ## Todo List
 
