@@ -34,13 +34,32 @@ yarn install
 
 ### iOS Setup
 
-Install CocoaPods dependencies:
+Install CocoaPods (if not already installed):
 
 ```bash
+sudo gem install cocoapods
+```
+
+Or if you're using a Ruby version manager like rbenv:
+
+```bash
+gem install cocoapods
+```
+
+**Important**: You must install pods for iOS development to work:
+
+```bash
+# Navigate to the iOS directory
 cd ios
+
+# Install pod dependencies
 pod install
+
+# Return to the project root
 cd ..
 ```
+
+> ⚠️ Always run `pod install` after pulling new changes or updating JavaScript dependencies that include native iOS code.
 
 ### Android Setup
 
