@@ -26,6 +26,12 @@ const ListHeader: React.FC<ListHeaderProps> = () => {
   const onChangeText = (text: string) => {
     timeout.current && clearTimeout(timeout.current);
     timeout.current = setTimeout(() => {
+      const value = (text ?? '')?.trim();
+      if (value === '') {
+        actions.changeFilter('keyword', '');
+      } else {
+        setKeyword(value);
+      }
       setKeyword(text?.trim());
     }, 300);
   };
