@@ -4,15 +4,27 @@ import {
   Keyword,
   Movie,
   MovieDetail,
+  MovieFilter,
   ResponseList,
   Review,
 } from '../../types';
 import {Fetch} from '../../utils';
 
+const movieUrls = {
+  now_playing: `/movie/now_playing`,
+  upcoming: `/movie/upcoming`,
+  popular: `/movie/popular`,
+};
 export default class MovieApi {
-  static getMovies(page: number): Promise<ResponseList<Movie>> {
+  static getMovies(
+    page: number,
+    filter?: MovieFilter,
+  ): Promise<ResponseList<Movie>> {
+    const {type, order, keyword} = filter || {};
     return Fetch.get(
-      `/movie/popular?language=en-US&page=${page}&api_key=${API_KEY}`,
+      `${
+        movieUrls?.[type ?? 'now_playing']
+      }?language=en-US&page=${page}&query=${keyword}&sort_by=${order}&api_key=${API_KEY}`,
     );
   }
 

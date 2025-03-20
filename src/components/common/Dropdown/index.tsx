@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useLayoutEffect, useState} from 'react';
 import {Pressable, StyleSheet} from 'react-native';
 import {useTheme} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -15,11 +15,17 @@ interface DropdownItem {
 }
 interface DropdownProps {
   label: string;
+  defaultValue?: any;
   data: DropdownItem[];
   onChange: (item: DropdownItem | null) => void;
 }
 
-export const Dropdown = ({label, data, onChange}: DropdownProps) => {
+export const Dropdown = ({
+  label,
+  data,
+  defaultValue,
+  onChange,
+}: DropdownProps) => {
   const {colors} = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<DropdownItem | null>(null);
@@ -31,6 +37,13 @@ export const Dropdown = ({label, data, onChange}: DropdownProps) => {
   useDidUpdate(() => {
     onChange(selectedItem);
   }, [selectedItem]);
+
+  useLayoutEffect(() => {
+    const selected = data.find(item => item.value === defaultValue);
+    if (selected) {
+      setSelectedItem(selected);
+    }
+  }, []);
 
   return (
     <View olh br={size.radius.sm} style={styles.container}>

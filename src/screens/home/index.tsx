@@ -5,11 +5,11 @@ import {useSelector} from 'react-redux';
 import {MovieItem, RootView} from '../../components';
 import size from '../../configs/size';
 import {ROUTES} from '../../constants';
-import {useActions} from '../../hooks';
-import {getMovies, refreshMovies} from '../../store/reducers/movie/actions';
+import {useActions, useDidUpdate} from '../../hooks';
+import {getMovies} from '../../store/reducers/movie/actions';
 import {
+  getFilterSelector,
   getMoviesSelector,
-  getNextPageSelector,
 } from '../../store/reducers/movie/selectors';
 import {Movie} from '../../types';
 import ListEmpty from './ListEmpty';
@@ -24,20 +24,20 @@ type ListItemProps = {
 const HomeScreen: React.FC = () => {
   const {navigate} = useNavigation();
   const movies = useSelector(getMoviesSelector);
-  const nextPage = useSelector(getNextPageSelector);
-  const actions = useActions({getMovies, refreshMovies});
+  const filter = useSelector(getFilterSelector);
+  const actions = useActions({getMovies});
 
   const navigateToDetail = useCallback((movie: Movie) => {
     Keyboard.dismiss();
     navigate(ROUTES.MOVE_DETAIL_SCREEN, {movie});
   }, []);
 
-  const onLoadMore = useCallback(() => {
-    actions.getMovies(nextPage);
-  }, [nextPage]);
+  useDidUpdate(() => {
+    actions.getMovies();
+  }, [filter]);
 
   useEffect(() => {
-    actions.getMovies(nextPage);
+    actions.getMovies();
   }, []);
 
   const renderItem = useCallback(({item, index}: ListItemProps) => {
@@ -50,7 +50,7 @@ const HomeScreen: React.FC = () => {
         refreshControl={
           <RefreshControl
             refreshing={false}
-            onRefresh={actions.refreshMovies}
+            onRefresh={() => actions.getMovies(true)}
           />
         }
         data={movies}
@@ -59,11 +59,12 @@ const HomeScreen: React.FC = () => {
         keyboardDismissMode="on-drag"
         keyboardShouldPersistTaps="always"
         showsVerticalScrollIndicator={false}
-        keyExtractor={item => item.id.toString()}
+        // keyExtractor={(item, index) => item.id.toString()}
+        keyExtractor={(item, index) => index.toString()}
         contentContainerStyle={styles.listContainer}
         ListEmptyComponent={<ListEmpty />}
         ListHeaderComponent={<ListHeader />}
-        ListFooterComponent={<LoadMoreBtn onPress={onLoadMore} />}
+        ListFooterComponent={<LoadMoreBtn onPress={actions.getMovies} />}
       />
     </RootView>
   );

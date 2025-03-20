@@ -1,53 +1,58 @@
 import React, {useRef, useState} from 'react';
-import {StyleSheet, TextInput} from 'react-native';
+import {Keyboard, StyleSheet, TextInput} from 'react-native';
 import {Button} from 'react-native-paper';
+import {useSelector} from 'react-redux';
 import {Dropdown, Text, View} from '../../components';
 import size from '../../configs/size';
 import {BaseColors} from '../../configs/theme';
 import {useActions} from '../../hooks';
-import {getMovies, searchMovies} from '../../store/reducers/movie/actions';
+import {changeFilter} from '../../store/reducers/movie/actions';
+import {getFilterSelector} from '../../store/reducers/movie/selectors';
 import {scale} from '../../utils';
 
 interface ListHeaderProps {}
 
 const ListHeader: React.FC<ListHeaderProps> = () => {
+  const filter = useSelector(getFilterSelector);
   const timeout = useRef<NodeJS.Timeout | undefined>();
-  const [keyword, setKeyword] = useState('');
-  const actions = useActions({searchMovies, getMovies});
+  const actions = useActions({changeFilter});
+  const [keyword, setKeyword] = useState<string>('');
+
+  const doSearch = () => {
+    Keyboard.dismiss();
+    actions.changeFilter('keyword', keyword);
+  };
 
   const onChangeText = (text: string) => {
-    setKeyword(text);
     timeout.current && clearTimeout(timeout.current);
     timeout.current = setTimeout(() => {
-      if (text.trim().length === 0) {
-        actions.getMovies();
-      } else {
-        actions.searchMovies(text);
-      }
-    }, 700);
+      setKeyword(text?.trim());
+    }, 300);
   };
+
   return (
     <View style={styles.container}>
       <Dropdown
-        onChange={() => {}}
-        label="Sort by"
+        onChange={value => actions.changeFilter('type', value?.value)}
+        defaultValue={filter.type}
+        label="List"
         data={[
-          {name: 'Now Playing', value: 1},
-          {name: 'Upcoming', value: 2},
-          {name: 'Popular', value: 3},
+          {name: 'Now Playing', value: 'now_playing'},
+          {name: 'Upcoming', value: 'upcoming'},
+          {name: 'Popular', value: 'popular'},
         ]}
       />
       <Dropdown
-        onChange={() => {}}
+        onChange={value => actions.changeFilter('order', value?.value)}
         label="Sort by"
+        defaultValue={filter.order}
         data={[
-          {name: 'By alphabetical order', value: 1},
-          {name: 'By rating', value: 2},
-          {name: 'By release date', value: 3},
+          {name: 'By alphabetical order', value: 'original_title.asc'},
+          {name: 'By rating', value: 'vote_average.desc'},
+          {name: 'By release date', value: 'release_date.desc'},
         ]}
       />
       <TextInput
-        value={keyword}
         style={styles.input}
         placeholder="Search movies"
         onChangeText={onChangeText}
@@ -56,6 +61,7 @@ const ListHeader: React.FC<ListHeaderProps> = () => {
       <Button
         mode="contained"
         buttonColor={BaseColors.ALTO}
+        onPress={doSearch}
         style={styles.button}>
         <Text bold size={16} deviceScale color={BaseColors.BLACK} opacity={0.5}>
           Search
