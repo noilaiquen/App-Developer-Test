@@ -5,6 +5,7 @@ import { BaseColors } from "../configs/theme";
 import { ROUTES } from "../constants";
 import HomeScreen from "../screens/home";
 import WatchListScreen from "../screens/watchlist";
+import { Platform } from "react-native";
 
 const Tab = createBottomTabNavigator();
 
@@ -34,6 +35,12 @@ export const BottomTabs = (): JSX.Element => {
       tabBarOptions={{
         style: {
           backgroundColor: "#032541",
+          ...Platform.select({
+            android: {
+              paddingBottom: 10,
+            },
+            ios: {},
+          }),
         },
       }}>
       {tabs.map(tab => (
@@ -45,7 +52,7 @@ export const BottomTabs = (): JSX.Element => {
             tabBarLabel: ({ focused }) => (
               <Icon
                 name={tab.iconName}
-                size={30}
+                size={26}
                 color={BaseColors.WHITE}
                 style={{
                   opacity: focused ? 1 : 0.5,

@@ -13,10 +13,10 @@ import {
   getRefreshingSelector,
 } from "../../store/reducers/movie/selectors";
 import { Movie } from "../../types";
+import { scale } from "../../utils";
 import ListEmpty from "./ListEmpty";
 import ListHeader from "./ListHeader";
 import LoadMoreBtn from "./LoadMoreBtn";
-import { scale } from "../../utils";
 
 type ListItemProps = {
   item: Movie;
@@ -36,10 +36,10 @@ const HomeScreen: React.FC = () => {
   }, []);
 
   useDidUpdate(() => {
-    actions.getMovies();
+    actions.getMovies(false);
   }, [filter]);
 
-  const renderItem = useCallback(({ item, index }: ListItemProps) => {
+  const renderItem = useCallback(({ item }: ListItemProps) => {
     return <MovieItem movie={item} onPress={navigateToDetail} />;
   }, []);
 
@@ -57,11 +57,12 @@ const HomeScreen: React.FC = () => {
         keyboardShouldPersistTaps="always"
         showsVerticalScrollIndicator={false}
         keyExtractor={item => item.id.toString()}
-        // keyExtractor={(item, index) => index.toString()}
         contentContainerStyle={styles.listContainer}
         ListEmptyComponent={<ListEmpty />}
         ListHeaderComponent={<ListHeader />}
-        ListFooterComponent={movies.length > 0 ? <LoadMoreBtn onPress={actions.getMovies} /> : null}
+        ListFooterComponent={
+          movies.length > 0 ? <LoadMoreBtn onPress={() => actions.getMovies(false)} /> : null
+        }
       />
     </RootView>
   );

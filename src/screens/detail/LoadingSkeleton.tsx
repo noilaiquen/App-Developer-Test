@@ -6,7 +6,7 @@ import size from "../../configs/size";
 const LoadingSkeleton: React.FC = () => {
   return (
     <View pd={size.spacing.lg} olh width={size.screen.width}>
-      <View pv={size.spacing.lg}>
+      {/* <View pv={size.spacing.lg}>
         <Skeleton width={100} height={size.spacing.lg} colorMode="light" />
       </View>
       <View mb={size.spacing.sm}>
@@ -17,7 +17,7 @@ const LoadingSkeleton: React.FC = () => {
       </View>
       <View pv={size.spacing.lg}>
         <Skeleton width={100} height={size.spacing.lg} colorMode="light" />
-      </View>
+      </View> */}
       <View row>
         <View mr={size.spacing.lg}>
           <Skeleton width={150} height={200} colorMode="light" />

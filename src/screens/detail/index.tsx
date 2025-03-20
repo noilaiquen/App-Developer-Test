@@ -14,6 +14,7 @@ import { Movie } from "../../types";
 import Cast from "./Cast";
 import LoadingSkeleton from "./LoadingSkeleton";
 import MainInfo from "./MainInfo";
+import { StyleSheet } from "react-native";
 
 const MovieDetaiScreen: React.FC = ({}) => {
   const { params } = useRoute();
@@ -52,6 +53,7 @@ const MovieDetaiScreen: React.FC = ({}) => {
         ref={scrollRef}
         scrollEventThrottle={16}
         showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.contentContainer}
         refreshControl={<RefreshControl refreshing={false} onRefresh={handleFetchDetail} />}>
         <MainInfo postPath={movie.poster_path} />
         <View bgColor>{loading ? <LoadingSkeleton /> : <Cast />}</View>
@@ -61,3 +63,9 @@ const MovieDetaiScreen: React.FC = ({}) => {
 };
 
 export default React.memo(MovieDetaiScreen);
+
+const styles = StyleSheet.create({
+  contentContainer: {
+    paddingBottom: 100,
+  },
+});

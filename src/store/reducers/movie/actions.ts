@@ -14,12 +14,14 @@ export const changeFilter = (key: string, value: any) => {
   };
 };
 
-export const getMovies = (isRefresh?: boolean) => {
+export const getMovies = (isRefresh: boolean) => {
   return async (dispatch: any, getState: any) => {
     const { movie } = getState();
     const { nextPage, filter } = movie;
+    const actionType = isRefresh ? REFRESH_MOVIES.ORIGIN : GET_MOVIES.ORIGIN;
+
     dispatch(
-      createAsyncDispatch(isRefresh ? REFRESH_MOVIES.ORIGIN : GET_MOVIES.ORIGIN)({
+      createAsyncDispatch(actionType)({
         action: () => MovieApi.getMovies(isRefresh ? 1 : nextPage, filter),
         handler: (data: ResponseList<Movie>) => {
           const { results } = data;
