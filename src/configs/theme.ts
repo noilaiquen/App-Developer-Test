@@ -74,6 +74,7 @@ const BaseColors = {
   EMPEROR: '#545454',
   BOULDER: '#848484',
   BEANSTALKS: '#00B4E4',
+  PUERTO_RICO: '#0099c2',
   SCARLET: '#eb2f06',
   CRIMSON: '#ef233c',
   CORNFLOWER_BLUE: '#5493F2',
@@ -85,7 +86,6 @@ const BaseColors = {
   TEXAS_ROSE: '#FFA85D',
   NAVY_BLUE: '#1D9CE4',
   ROYAL_BLUE: '#4573E8',
-  PUERTO_RICO: '#44BBA0',
   SILVER: '#BCBCBC',
   ORANGE_PEEL: '#F2A001',
   FORGET_ME: '#FFF4F0',
@@ -111,6 +111,7 @@ const CombinedDefaultTheme = {
     ...MD3LightTheme.colors,
     ..._LightTheme.colors,
     primary: BaseColors.BEANSTALKS,
+    secondary: BaseColors.PUERTO_RICO,
     error: BaseColors.SCARLET,
   },
 };

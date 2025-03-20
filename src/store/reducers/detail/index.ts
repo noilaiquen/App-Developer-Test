@@ -4,6 +4,7 @@ import {
   GET_MOVIE_CAST,
   GET_MOVIE_DETAIL,
   GET_MOVIE_KEYWORD,
+  GET_MOVIE_RELEASE_DATE,
   GET_MOVIE_REVIEW,
 } from './actionsType';
 
@@ -58,6 +59,14 @@ export default (state = initState, action: AnyAction) => {
         movie: {
           ...state.movie,
           cast: action.payload,
+        },
+      };
+    case GET_MOVIE_RELEASE_DATE.SUCCESS:
+      return {
+        ...state,
+        movie: {
+          ...state.movie,
+          certification: action.payload,
         },
       };
     default:

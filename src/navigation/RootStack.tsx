@@ -6,7 +6,7 @@ import {
 import {HeaderCenter} from '../components';
 import {BaseColors, useTheme} from '../configs/theme';
 import {ROUTES} from '../constants';
-import MovieDetail from '../screens/movieDetail/index';
+import MovieDetail from '../screens/detail/index';
 import {BottomTabs} from './BottomTabs';
 
 const Stack = createNativeStackNavigator();
@@ -34,10 +34,11 @@ export const RootStack = () => {
         name={ROUTES.MOVE_DETAIL_SCREEN}
         component={MovieDetail}
         options={{
-          headerTranslucent: true,
+          // headerShown: false,
+          // headerTranslucent: true,
           headerStyle: {backgroundColor: 'transparent'},
           headerCenter: () => null,
-          headerTintColor: colors.background,
+          // headerTintColor: colors.background,
           headerBackTitle: 'Back',
           statusBarColor: 'transparent',
           headerHideShadow: true,

@@ -50,6 +50,7 @@ export type MovieDetail = {
   keywords?: Keyword[];
   reviews?: Review[];
   cast?: Cast[];
+  certification?: string;
 };
 
 export type Genre = {
@@ -98,4 +99,16 @@ export type Cast = {
   name: string;
   popularity: number;
   profile_path: string;
+};
+
+export type ReleaseDate = {
+  id: number;
+  results: ReleaseResult[];
+};
+
+export type ReleaseResult = {
+  iso_3166_1: string; // Country code, SG is iso_3166_1
+  release_dates: {
+    certification: string;
+  }[];
 };

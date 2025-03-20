@@ -5,6 +5,7 @@ import {
   Movie,
   MovieDetail,
   MovieFilter,
+  ReleaseDate,
   ResponseList,
   Review,
 } from '../../types';
@@ -24,24 +25,31 @@ export default class MovieApi {
     const {type, order, keyword} = filter || {};
     if (keyword) {
       return Fetch.get(
-        `${movieUrls.search}?language=en-US&page=${page}&query=${keyword}&sort_by=${order}&api_key=${API_KEY}`,
+        `${movieUrls.search}?language=en-US&page=${page}&query=${keyword}&sort_by=${order}&region=SG&api_key=${API_KEY}`,
       );
     }
     return Fetch.get(
       `${
         movieUrls?.[type ?? 'now_playing']
-      }?language=en-US&page=${page}&query=${keyword}&sort_by=${order}&api_key=${API_KEY}`,
+      }?language=en-US&page=${page}&query=${keyword}&sort_by=${order}&region=SG&api_key=${API_KEY}`,
     );
   }
 
   static searchMovies(query: string): Promise<ResponseList<Movie>> {
     return Fetch.get(
-      `/search/movie?include_adult=true&language=en-US&page=1&api_key=${API_KEY}&query=${query}`,
+      `/search/movie?include_adult=true&language=en-US&page=1&api_key=${API_KEY}&query=${query}&region=SG`,
     );
   }
 
   static getMovieDetail(id: number): Promise<MovieDetail> {
-    return Fetch.get(`/movie/${id}?language=en-US&api_key=${API_KEY}`);
+    return Fetch.get(
+      `/movie/${id}?language=en-US&region=SG&api_key=${API_KEY}`,
+    );
+  }
+  static getMovieReleaseDate(id: number): Promise<ReleaseDate> {
+    return Fetch.get(
+      `/movie/${id}/release_dates?language=en-US&region=SG&api_key=${API_KEY}`,
+    );
   }
 
   static getMovieKeywords(id: number): Promise<{keywords: Keyword[]}> {

@@ -8,6 +8,7 @@ interface ViewProps {
   color?: string;
   width?: number | string;
   height?: number | string;
+  gap?: number;
   mg?: number;
   mt?: number;
   mb?: number;
@@ -41,6 +42,7 @@ export const View: React.FC<ViewProps> = ({
   color,
   width,
   height,
+  gap,
   mg,
   mt,
   mb,
@@ -73,6 +75,7 @@ export const View: React.FC<ViewProps> = ({
     color && {backgroundColor: color},
     width && {width},
     height && {height},
+    gap && {gap},
     mg && {margin: mg},
     mt && {marginTop: mt},
     mb && {marginBottom: mb},
