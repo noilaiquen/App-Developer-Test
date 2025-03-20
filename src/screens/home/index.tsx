@@ -16,6 +16,7 @@ import {Movie} from '../../types';
 import ListEmpty from './ListEmpty';
 import ListHeader from './ListHeader';
 import LoadMoreBtn from './LoadMoreBtn';
+import {scale} from '../../utils';
 
 type ListItemProps = {
   item: Movie;
@@ -76,5 +77,6 @@ export default React.memo(HomeScreen);
 const styles = StyleSheet.create({
   listContainer: {
     padding: size.spacing.xxl,
+    paddingBottom: scale(150),
   },
 });

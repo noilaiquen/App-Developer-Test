@@ -62,7 +62,7 @@ const ListHeader: React.FC<ListHeaderProps> = () => {
       />
       <TextInput
         style={styles.input}
-        placeholder="Search movies"
+        placeholder="Search..."
         onChangeText={onChangeText}
       />
 
@@ -103,6 +103,14 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: BaseColors.ALTO,
     backgroundColor: 'white',
+    shadowColor: BaseColors.ALTO,
+    shadowOffset: {
+      width: 2,
+      height: 2,
+    },
+    shadowRadius: 4,
+    shadowOpacity: 0.9,
+    elevation: 5,
   },
   button: {
     marginTop: size.spacing.md,

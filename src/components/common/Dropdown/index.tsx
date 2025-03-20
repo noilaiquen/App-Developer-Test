@@ -1,4 +1,4 @@
-import React, {useEffect, useLayoutEffect, useState} from 'react';
+import React, {useLayoutEffect, useState} from 'react';
 import {Pressable, StyleSheet} from 'react-native';
 import {useTheme} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -46,12 +46,12 @@ export const Dropdown = ({
   }, []);
 
   return (
-    <View olh br={size.radius.sm} style={styles.container}>
+    <View br={size.radius.sm} style={styles.container}>
       <Pressable onPress={() => setIsOpen(!isOpen)}>
         <View
           centerH
           row
-          pl={size.spacing.md}
+          pd={size.spacing.md}
           height={scale(50)}
           style={{
             borderBottomWidth: isOpen ? 1 : 0,
@@ -62,7 +62,7 @@ export const Dropdown = ({
           </Text>
           <Icon
             name={isOpen ? 'keyboard-arrow-down' : 'keyboard-arrow-right'}
-            size={30}
+            size={26}
           />
         </View>
       </Pressable>
