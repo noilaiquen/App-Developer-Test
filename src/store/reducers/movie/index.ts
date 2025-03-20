@@ -9,6 +9,7 @@ import {
 
 type InitState = {
   loading: boolean;
+  refreshing: boolean;
   movies: Movie[];
   nextPage: number;
   filter: MovieFilter;
@@ -16,6 +17,7 @@ type InitState = {
 
 const initState: InitState = {
   loading: false,
+  refreshing: false,
   movies: [],
   nextPage: 1,
   filter: {
@@ -40,7 +42,7 @@ export default (state = initState, action: AnyAction) => {
     case REFRESH_MOVIES.REQUEST:
       return {
         ...state,
-        loading: true,
+        refreshing: true,
         nextPage: 1,
       };
     case GET_MOVIES.REQUEST:
@@ -58,7 +60,7 @@ export default (state = initState, action: AnyAction) => {
     case REFRESH_MOVIES.SUCCESS:
       return {
         ...state,
-        loading: false,
+        refreshing: false,
         movies: action.payload,
         nextPage: state.nextPage + 1,
       };
@@ -66,6 +68,7 @@ export default (state = initState, action: AnyAction) => {
     case GET_MOVIES.FAILURE:
       return {
         ...state,
+        refreshing: false,
         loading: false,
       };
     case SEARCH_MOVIES.REQUEST:

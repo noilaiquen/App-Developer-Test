@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useMemo, useRef, useState} from 'react';
 import {Keyboard, StyleSheet, TextInput} from 'react-native';
 import {Button} from 'react-native-paper';
 import {useSelector} from 'react-redux';
@@ -36,6 +36,8 @@ const ListHeader: React.FC<ListHeaderProps> = () => {
     }, 300);
   };
 
+  const canSearch = useMemo(() => keyword.length > 0, [keyword]);
+
   return (
     <View style={styles.container}>
       <Dropdown
@@ -65,11 +67,17 @@ const ListHeader: React.FC<ListHeaderProps> = () => {
       />
 
       <Button
+        disabled={!canSearch}
         mode="contained"
-        buttonColor={BaseColors.ALTO}
+        buttonColor={canSearch ? BaseColors.BEANSTALKS : BaseColors.ALTO}
         onPress={doSearch}
         style={styles.button}>
-        <Text bold size={16} deviceScale color={BaseColors.BLACK} opacity={0.5}>
+        <Text
+          bold
+          size={16}
+          deviceScale
+          color={canSearch ? BaseColors.WHITE : BaseColors.BLACK}
+          opacity={canSearch ? 1 : 0.5}>
           Search
         </Text>
       </Button>

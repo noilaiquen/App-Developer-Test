@@ -11,6 +11,7 @@ import {
 import {Fetch} from '../../utils';
 
 const movieUrls = {
+  search: `/search/movie`,
   now_playing: `/movie/now_playing`,
   upcoming: `/movie/upcoming`,
   popular: `/movie/popular`,
@@ -21,6 +22,11 @@ export default class MovieApi {
     filter?: MovieFilter,
   ): Promise<ResponseList<Movie>> {
     const {type, order, keyword} = filter || {};
+    if (keyword) {
+      return Fetch.get(
+        `${movieUrls.search}?language=en-US&page=${page}&query=${keyword}&sort_by=${order}&api_key=${API_KEY}`,
+      );
+    }
     return Fetch.get(
       `${
         movieUrls?.[type ?? 'now_playing']

@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback} from 'react';
 import {FlatList, Keyboard, RefreshControl, StyleSheet} from 'react-native';
 import {useSelector} from 'react-redux';
 import {MovieItem, RootView} from '../../components';
@@ -10,6 +10,7 @@ import {getMovies} from '../../store/reducers/movie/actions';
 import {
   getFilterSelector,
   getMoviesSelector,
+  getRefreshingSelector,
 } from '../../store/reducers/movie/selectors';
 import {Movie} from '../../types';
 import ListEmpty from './ListEmpty';
@@ -25,6 +26,7 @@ const HomeScreen: React.FC = () => {
   const {navigate} = useNavigation();
   const movies = useSelector(getMoviesSelector);
   const filter = useSelector(getFilterSelector);
+  const isRefreshing = useSelector(getRefreshingSelector);
   const actions = useActions({getMovies});
 
   const navigateToDetail = useCallback((movie: Movie) => {
@@ -36,10 +38,6 @@ const HomeScreen: React.FC = () => {
     actions.getMovies();
   }, [filter]);
 
-  useEffect(() => {
-    actions.getMovies();
-  }, []);
-
   const renderItem = useCallback(({item, index}: ListItemProps) => {
     return <MovieItem movie={item} index={index} onPress={navigateToDetail} />;
   }, []);
@@ -49,7 +47,7 @@ const HomeScreen: React.FC = () => {
       <FlatList
         refreshControl={
           <RefreshControl
-            refreshing={false}
+            refreshing={isRefreshing}
             onRefresh={() => actions.getMovies(true)}
           />
         }
@@ -59,12 +57,14 @@ const HomeScreen: React.FC = () => {
         keyboardDismissMode="on-drag"
         keyboardShouldPersistTaps="always"
         showsVerticalScrollIndicator={false}
-        // keyExtractor={(item, index) => item.id.toString()}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={item => item.id.toString()}
+        // keyExtractor={(item, index) => index.toString()}
         contentContainerStyle={styles.listContainer}
         ListEmptyComponent={<ListEmpty />}
         ListHeaderComponent={<ListHeader />}
-        ListFooterComponent={<LoadMoreBtn onPress={actions.getMovies} />}
+        ListFooterComponent={
+          movies.length > 0 ? <LoadMoreBtn onPress={actions.getMovies} /> : null
+        }
       />
     </RootView>
   );
