@@ -1,10 +1,10 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {View} from '../components';
 import {BaseColors} from '../configs/theme';
 import {ROUTES} from '../constants';
-import HomeScreen from '../screens/home/index';
+import HomeScreen from '../screens/home';
+import WatchListScreen from '../screens/watchlist';
 
 const Tab = createBottomTabNavigator();
 
@@ -22,7 +22,7 @@ const tabs: TabItem[] = [
   },
   {
     route: ROUTES.WATCH_LIST_SCREEN,
-    component: View,
+    component: WatchListScreen,
     iconName: 'bookmark',
   },
 ];

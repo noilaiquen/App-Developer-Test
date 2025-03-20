@@ -6,7 +6,7 @@ export default StyleSheet.create({
     fontSize: scale(24),
   },
   subheading: {
-    fontSize: scale(21),
+    fontSize: scale(20),
   },
   title: {
     fontSize: scale(18),
