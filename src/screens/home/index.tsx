@@ -2,7 +2,7 @@ import {useNavigation} from '@react-navigation/native';
 import React, {useCallback} from 'react';
 import {FlatList, Keyboard, RefreshControl, StyleSheet} from 'react-native';
 import {useSelector} from 'react-redux';
-import {MovieItem, RootView} from '../../components';
+import {Header, MovieItem, RootView} from '../../components';
 import size from '../../configs/size';
 import {ROUTES} from '../../constants';
 import {useActions, useDidUpdate} from '../../hooks';
@@ -39,11 +39,12 @@ const HomeScreen: React.FC = () => {
   }, [filter]);
 
   const renderItem = useCallback(({item, index}: ListItemProps) => {
-    return <MovieItem movie={item} index={index} onPress={navigateToDetail} />;
+    return <MovieItem movie={item} onPress={navigateToDetail} />;
   }, []);
 
   return (
-    <RootView>
+    <RootView safeEnable>
+      <Header />
       <FlatList
         refreshControl={
           <RefreshControl

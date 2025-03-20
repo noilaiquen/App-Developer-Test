@@ -32,7 +32,7 @@ const MainInfo: React.FC<{
             </View>
           </Pressable>
           <View flex={1} center>
-            <Text subheading bold color={BaseColors.WHITE}>
+            <Text subheading bold color={BaseColors.WHITE} align="center">
               {detail.title}
               <Text
                 subheading

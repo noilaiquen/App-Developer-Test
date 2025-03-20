@@ -11,11 +11,10 @@ import {View} from '../common/View';
 
 export interface MovieItemProps {
   movie: Movie;
-  index: number;
   onPress: (movie: Movie) => void;
 }
 
-export const MovieItem: FC<MovieItemProps> = ({movie, index, onPress}) => {
+export const MovieItem: FC<MovieItemProps> = ({movie, onPress}) => {
   return (
     <TouchableOpacity
       style={styles.container}

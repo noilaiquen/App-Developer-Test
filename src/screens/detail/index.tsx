@@ -1,11 +1,9 @@
 import {useRoute} from '@react-navigation/native';
 import React, {useCallback, useEffect, useState} from 'react';
-import {StyleSheet} from 'react-native';
 import {RefreshControl} from 'react-native-gesture-handler';
 import Animated, {AnimatedRef, useAnimatedRef} from 'react-native-reanimated';
 import {AnimatedScrollView} from 'react-native-reanimated/lib/typescript/reanimated2/component/ScrollView';
-import {RootView, View} from '../../components';
-import size from '../../configs/size';
+import {Header, RootView, View} from '../../components';
 import {useActions} from '../../hooks';
 import {
   getMovieCredits,
@@ -51,7 +49,8 @@ const MovieDetaiScreen: React.FC = ({}) => {
   }, [handleFetchDetail]);
 
   return (
-    <RootView>
+    <RootView safeEnable>
+      <Header />
       <Animated.ScrollView
         ref={scrollRef}
         scrollEventThrottle={16}
@@ -67,11 +66,3 @@ const MovieDetaiScreen: React.FC = ({}) => {
 };
 
 export default React.memo(MovieDetaiScreen);
-
-const styles = StyleSheet.create({
-  imagePoster: {
-    borderRadius: size.radius.md,
-    width: 120,
-    height: 180,
-  },
-});
