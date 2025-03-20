@@ -77,29 +77,23 @@ yarn android
 
 ### iOS
 
-<img src="screenshots/ios-home.png" width="250" alt="iOS Home Screen">
-<img src="screenshots/ios-detail.png" width="250" alt="iOS Details Screen">
-<img src="screenshots/ios-watchlist.png" width="250" alt="iOS Watchlist Screen">
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+  <img src="screenshots/ios-home.png" width="250" alt="iOS Home Screen">
+  <img src="screenshots/ios-detail.png" width="250" alt="iOS Details Screen">
+  <img src="screenshots/ios-watchlist.png" width="250" alt="iOS Watchlist Screen">
+</div>
 
 ### Android
 
-<img src="screenshots/android-home.png" width="250" alt="Android Home Screen">
-<img src="screenshots/android-detail.png" width="250" alt="Android Details Screen">
-<img src="screenshots/android-watchlist.png" width="250" alt="Android Watchlist Screen">
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+  <img src="screenshots/android-home.png" width="250" alt="Android Home Screen">
+  <img src="screenshots/android-detail.png" width="250" alt="Android Details Screen">
+  <img src="screenshots/android-watchlist.png" width="250" alt="Android Watchlist Screen">
+</div>
 
 ## Todo List
 
-- [ ] Create movie listing screen
-- [ ] Implement movie details screen
-- [ ] Add search functionality
-- [ ] Integrate with movie API
-- [ ] Implement favorites feature
-- [ ] Add user authentication
-- [ ] Create settings screen
-- [ ] Implement dark mode
-- [ ] Add offline support
-- [ ] Implement deep linking
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+- [ ] Integrate watchlist api.
+- [ ] Integrate recommendations api.
+- [ ] Implement recommendations UI.
+- [ ] Implement watchlist filter and sort.
