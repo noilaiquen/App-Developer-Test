@@ -1,9 +1,9 @@
-import React, {FC} from 'react';
-import {StyleSheet} from 'react-native';
-import {BaseColors} from '../../configs/theme';
-import {Text} from '../common/Text';
-import {View} from '../common/View';
-import size from '../../configs/size';
+import React, { FC } from "react";
+import { StyleSheet } from "react-native";
+import { BaseColors } from "../../configs/theme";
+import { Text } from "../common/Text";
+import { View } from "../common/View";
+import size from "../../configs/size";
 
 export interface SectionProps {
   title: string;
@@ -31,20 +31,20 @@ export const Section: FC<SectionProps> = ({
 const styles = StyleSheet.create({
   imageBg: {
     flex: 1,
-    justifyContent: 'flex-end',
+    justifyContent: "flex-end",
   },
   progressContainer: {
     width: 40,
     height: 40,
     borderRadius: 20,
-    position: 'absolute',
+    position: "absolute",
     bottom: 70,
     left: 10,
     zIndex: 10,
   },
   progressText: {
     color: BaseColors.WHITE,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     fontSize: 10,
   },
 });

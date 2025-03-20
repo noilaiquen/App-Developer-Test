@@ -1,4 +1,3 @@
-import {Movie} from '../../../types';
+import { Movie } from "../../../types";
 
-export const getWatchlistSelector = (state: any): Record<number, Movie> =>
-  state.watchlist.movies;
+export const getWatchlistSelector = (state: any): Record<number, Movie> => state.watchlist.movies;

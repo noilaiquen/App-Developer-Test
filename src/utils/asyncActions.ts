@@ -1,25 +1,14 @@
-import {
-  isArray,
-  isBoolean,
-  isEmpty,
-  isNaN,
-  isNil,
-  isNumber,
-  isObject,
-  isString,
-} from 'lodash';
-import {Dispatch} from 'redux';
+import { isArray, isBoolean, isEmpty, isNaN, isNil, isNumber, isObject, isString } from "lodash";
+import { Dispatch } from "redux";
 
 export enum AsyncActionPhases {
-  ORIGIN = 'ORIGIN',
-  REQUEST = 'REQUEST',
-  SUCCESS = 'SUCCESS',
-  FAILURE = 'FAILURE',
+  ORIGIN = "ORIGIN",
+  REQUEST = "REQUEST",
+  SUCCESS = "SUCCESS",
+  FAILURE = "FAILURE",
 }
 
-export const createAsyncActions = (
-  action: string,
-): {[key in AsyncActionPhases]: string} => {
+export const createAsyncActions = (action: string): { [key in AsyncActionPhases]: string } => {
   return {
     [AsyncActionPhases.ORIGIN]: action,
     [AsyncActionPhases.REQUEST]: `${action}_${AsyncActionPhases.REQUEST}`,
@@ -37,7 +26,7 @@ type AsyncDispatchOption = {
 };
 
 export const createAsyncDispatch =
-  (actionType: string = 'COMMON_ACTION') =>
+  (actionType = "COMMON_ACTION") =>
   (options: AsyncDispatchOption) =>
   (dispatch: Dispatch, getState: () => any) => {
     const {
@@ -56,8 +45,7 @@ export const createAsyncDispatch =
 
     return new Promise(async (resolve, reject) => {
       try {
-        const response =
-          (await action({...mapParamsForActions(params)})) ?? undefined;
+        const response = (await action({ ...mapParamsForActions(params) })) ?? undefined;
 
         const dataHandler = await handler(response, dispatch, getState);
 
@@ -81,12 +69,7 @@ export const createAsyncDispatch =
 function mapParamsForActions(params: any): any[] {
   if (isArray(params)) {
     return params;
-  } else if (
-    isObject(params) ||
-    isNumber(params) ||
-    isString(params) ||
-    isBoolean(params)
-  ) {
+  } else if (isObject(params) || isNumber(params) || isString(params) || isBoolean(params)) {
     return [params];
   } else if (isEmpty(params) || isNaN(params) || isNil(params)) {
     return [];

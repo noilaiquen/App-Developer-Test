@@ -1,11 +1,11 @@
-import PropTypes from 'prop-types';
-import React, {useMemo} from 'react';
-import {TextProps as RNTextProps, StyleSheet} from 'react-native';
-import {Text as RPText, useTheme} from 'react-native-paper';
-import {VariantProp} from 'react-native-paper/lib/typescript/components/Typography/types';
-import {BaseColors} from '../../../configs/theme';
-import typography from '../../../configs/typography';
-import {scale} from '../../../utils/responsive';
+import PropTypes from "prop-types";
+import React, { useMemo } from "react";
+import { TextProps as RNTextProps, StyleSheet } from "react-native";
+import { Text as RPText, useTheme } from "react-native-paper";
+import { VariantProp } from "react-native-paper/lib/typescript/components/Typography/types";
+import { BaseColors } from "../../../configs/theme";
+import typography from "../../../configs/typography";
+import { scale } from "../../../utils/responsive";
 
 type TextProps = {
   deviceScale?: boolean;
@@ -133,19 +133,19 @@ export const Text: React.FC<TextProps> = ({
     // light && fonts.light,
     // medium && fonts.medium,
     // bold && fonts.bold,
-    underline && {textDecorationLine: 'underline'},
-    italic && {fontStyle: 'italic'},
+    underline && { textDecorationLine: "underline" },
+    italic && { fontStyle: "italic" },
 
-    groupTitle && {color: BaseColors.OUTRAGEOUS_ORANGE, marginBottom: 7},
+    groupTitle && { color: BaseColors.OUTRAGEOUS_ORANGE, marginBottom: 7 },
 
     headline && typography.headline,
     subheading && typography.subheading,
     title && typography.title,
     paragraph && typography.paragraph,
     caption && typography.caption,
-    size && {fontSize: deviceScale ? scale(size) : size},
+    size && { fontSize: deviceScale ? scale(size) : size },
 
-    primaryColor && {color: colors.primary},
+    primaryColor && { color: colors.primary },
     // primaryDarkColor && { color: colors.primaryDark },
     // accentColor && { color: colors.accent },
     // surfaceColor && { color: colors.surface },
@@ -155,35 +155,33 @@ export const Text: React.FC<TextProps> = ({
     // backdropColor && { color: colors.backdrop },
     // notificationColor && { color: colors.notification },
     // invertColor && { color: colors.lightText },
-    color && {color},
+    color && { color },
 
-    mt && {marginTop: mt},
-    mr && {marginRight: mr},
-    mb && {marginBottom: mb},
-    ml && {marginLeft: ml},
+    mt && { marginTop: mt },
+    mr && { marginRight: mr },
+    mb && { marginBottom: mb },
+    ml && { marginLeft: ml },
 
-    ma && {margin: ma},
-    mh && {marginHorizontal: mh},
-    mv && {marginVertical: mv},
+    ma && { margin: ma },
+    mh && { marginHorizontal: mh },
+    mv && { marginVertical: mv },
 
-    flex1 && {flex: 1},
-    uppercase && {textTransform: 'uppercase'},
-    align && {textAlign: align},
-    lineHeight && {lineHeight: deviceScale ? scale(lineHeight) : lineHeight},
-    fontStyle && {fontStyle},
+    flex1 && { flex: 1 },
+    uppercase && { textTransform: "uppercase" },
+    align && { textAlign: align },
+    lineHeight && { lineHeight: deviceScale ? scale(lineHeight) : lineHeight },
+    fontStyle && { fontStyle },
     style && style,
   ]);
 
   const _variant = useMemo(() => {
     if (variant) return variant;
-    if (bold) return 'bold';
-    if (medium) return 'medium';
-    if (light) return 'light';
-    if (thin) return 'thin';
-    return 'regular';
-  }, [bold, medium, normal, thin, light, variant]) as
-    | VariantProp<never>
-    | undefined;
+    if (bold) return "bold";
+    if (medium) return "medium";
+    if (light) return "light";
+    if (thin) return "thin";
+    return "regular";
+  }, [bold, medium, normal, thin, light, variant]) as VariantProp<never> | undefined;
 
   return (
     <RPText style={textStyles} onLayout={onLayout} variant={_variant} {...rest}>

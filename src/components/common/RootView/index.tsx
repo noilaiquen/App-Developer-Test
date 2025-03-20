@@ -1,8 +1,8 @@
-import PropTypes from 'prop-types';
-import React, {useCallback, useMemo} from 'react';
-import {SafeAreaView, StyleSheet, View} from 'react-native';
-import ErrorBoundary from 'react-native-error-boundary';
-import {ActivityIndicator, useTheme} from 'react-native-paper';
+import PropTypes from "prop-types";
+import React, { useCallback, useMemo } from "react";
+import { SafeAreaView, StyleSheet, View } from "react-native";
+import ErrorBoundary from "react-native-error-boundary";
+import { ActivityIndicator, useTheme } from "react-native-paper";
 
 interface RootViewProps {
   children?: React.ReactNode;
@@ -21,7 +21,7 @@ export const RootView: React.FC<RootViewProps> = ({
   safeEnable,
   contentContainStyle,
 }) => {
-  const {colors} = useTheme();
+  const { colors } = useTheme();
   const _styles = StyleSheet.flatten([
     {
       flex: 1,
@@ -52,15 +52,13 @@ export const RootView: React.FC<RootViewProps> = ({
       // FallbackComponent={FallBackView}
     >
       <View style={_styles}>
-        <View style={[{flex: 1}, contentContainStyle]}>
+        <View style={[{ flex: 1 }, contentContainStyle]}>
           {loading ? (
             renderLoading
           ) : (
             <>
               {safeEnable ? (
-                <SafeAreaView style={{backgroundColor: backgroundColor}}>
-                  {children}
-                </SafeAreaView>
+                <SafeAreaView style={{ backgroundColor: backgroundColor }}>{children}</SafeAreaView>
               ) : (
                 children
               )}
@@ -83,7 +81,7 @@ RootView.propTypes = {
 const styles = StyleSheet.create({
   loadingContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

@@ -1,3 +1,3 @@
-export * from './MovieItem';
-export * from './Score';
-export * from './Section';
+export * from "./MovieItem";
+export * from "./Score";
+export * from "./Section";

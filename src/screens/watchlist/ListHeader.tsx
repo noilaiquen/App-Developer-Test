@@ -1,12 +1,12 @@
-import React, {FC, useState} from 'react';
-import {Pressable, StyleSheet} from 'react-native';
-import {Menu} from 'react-native-paper';
-import Icon from 'react-native-vector-icons/AntDesign';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import {Text, View} from '../../components';
-import size from '../../configs/size';
-import {BaseColors} from '../../configs/theme';
-import {scale} from '../../utils';
+import React, { FC, useState } from "react";
+import { Pressable, StyleSheet } from "react-native";
+import { Menu } from "react-native-paper";
+import Icon from "react-native-vector-icons/AntDesign";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { Text, View } from "../../components";
+import size from "../../configs/size";
+import { BaseColors } from "../../configs/theme";
+import { scale } from "../../utils";
 
 type FilterItem = {
   name: string;
@@ -24,12 +24,12 @@ interface OrderProps {
 }
 
 const FILTER: FilterItem[] = [
-  {name: 'Alphabetical order', value: 'original_title.asc'},
-  {name: 'Rating', value: 'vote_average.desc'},
-  {name: 'Release date', value: 'release_date.desc'},
+  { name: "Alphabetical order", value: "original_title.asc" },
+  { name: "Rating", value: "vote_average.desc" },
+  { name: "Release date", value: "release_date.desc" },
 ];
 
-const DropdownMenu: FC<DropdownMenuProps> = ({onChange, value}) => {
+const DropdownMenu: FC<DropdownMenuProps> = ({ onChange, value }) => {
   const [visible, setVisible] = React.useState(false);
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
@@ -40,11 +40,7 @@ const DropdownMenu: FC<DropdownMenuProps> = ({onChange, value}) => {
       onDismiss={closeMenu}
       anchor={
         <Pressable onPress={openMenu}>
-          <View
-            row
-            centerH
-            gap={size.spacing.xxl}
-            style={style.filterContainer}>
+          <View row centerH gap={size.spacing.xxl} style={style.filterContainer}>
             <Text color={BaseColors.BEANSTALKS} bold>
               {value.name}
             </Text>
@@ -60,22 +56,19 @@ const DropdownMenu: FC<DropdownMenuProps> = ({onChange, value}) => {
             closeMenu();
           }}
           title={item.name}
-          titleStyle={{fontSize: scale(14)}}
+          titleStyle={{ fontSize: scale(14) }}
         />
       ))}
     </Menu>
   );
 };
 
-const Order: FC<OrderProps> = ({onChange, value}) => {
+const Order: FC<OrderProps> = ({ onChange, value }) => {
   return (
-    <Pressable onPress={() => onChange(value === 'asc' ? 'desc' : 'asc')}>
+    <Pressable onPress={() => onChange(value === "asc" ? "desc" : "asc")}>
       <View row centerH gap={size.spacing.lg}>
         <Text color={BaseColors.BOULDER}>Order:</Text>
-        <FontAwesome
-          name={value === 'asc' ? 'long-arrow-down' : 'long-arrow-up'}
-          size={16}
-        />
+        <FontAwesome name={value === "asc" ? "long-arrow-down" : "long-arrow-up"} size={16} />
       </View>
     </Pressable>
   );
@@ -83,7 +76,7 @@ const Order: FC<OrderProps> = ({onChange, value}) => {
 
 const ListHeader: React.FC = () => {
   const [filter, setFilter] = useState<FilterItem>(FILTER[0]);
-  const [order, setOrder] = useState('desc');
+  const [order, setOrder] = useState("desc");
   return (
     <View mb={size.spacing.xl} gap={size.spacing.sm}>
       <Text subheading bold>

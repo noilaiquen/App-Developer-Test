@@ -1,6 +1,6 @@
-import React from 'react';
-import {View as RNView, StyleProp, StyleSheet, ViewStyle} from 'react-native';
-import {useTheme} from 'react-native-paper';
+import React from "react";
+import { View as RNView, StyleProp, StyleSheet, ViewStyle } from "react-native";
+import { useTheme } from "react-native-paper";
 
 interface ViewProps {
   bgColor?: boolean;
@@ -68,35 +68,35 @@ export const View: React.FC<ViewProps> = ({
   onLayout,
   ...rest
 }) => {
-  const {colors} = useTheme();
+  const { colors } = useTheme();
 
   const _styles = StyleSheet.flatten([
-    bgColor && {backgroundColor: colors.background},
-    color && {backgroundColor: color},
-    width && {width},
-    height && {height},
-    gap && {gap},
-    mg && {margin: mg},
-    mt && {marginTop: mt},
-    mb && {marginBottom: mb},
-    ml && {marginLeft: ml},
-    mr && {marginRight: mr},
-    mh && {marginHorizontal: mh},
-    mv && {marginVertical: mv},
-    pd && {padding: pd},
-    pt && {paddingTop: pt},
-    pb && {paddingBottom: pb},
-    pl && {paddingLeft: pl},
-    pr && {paddingRight: pr},
-    ph && {paddingHorizontal: ph},
-    pv && {paddingVertical: pv},
-    br && {borderRadius: br},
-    olh && {overflow: 'hidden'},
-    flex && {flex},
-    row && {flexDirection: 'row'},
-    center && {justifyContent: 'center', alignItems: 'center'},
-    centerH && {alignItems: row ? 'center' : 'flex-start'},
-    centerV && {justifyContent: row ? 'flex-start' : 'center'},
+    bgColor && { backgroundColor: colors.background },
+    color && { backgroundColor: color },
+    width && { width },
+    height && { height },
+    gap && { gap },
+    mg && { margin: mg },
+    mt && { marginTop: mt },
+    mb && { marginBottom: mb },
+    ml && { marginLeft: ml },
+    mr && { marginRight: mr },
+    mh && { marginHorizontal: mh },
+    mv && { marginVertical: mv },
+    pd && { padding: pd },
+    pt && { paddingTop: pt },
+    pb && { paddingBottom: pb },
+    pl && { paddingLeft: pl },
+    pr && { paddingRight: pr },
+    ph && { paddingHorizontal: ph },
+    pv && { paddingVertical: pv },
+    br && { borderRadius: br },
+    olh && { overflow: "hidden" },
+    flex && { flex },
+    row && { flexDirection: "row" },
+    center && { justifyContent: "center", alignItems: "center" },
+    centerH && { alignItems: row ? "center" : "flex-start" },
+    centerV && { justifyContent: row ? "flex-start" : "center" },
     style && style,
   ]) as StyleProp<ViewStyle>;
 

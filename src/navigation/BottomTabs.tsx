@@ -1,10 +1,10 @@
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import React from 'react';
-import Icon from 'react-native-vector-icons/Ionicons';
-import {BaseColors} from '../configs/theme';
-import {ROUTES} from '../constants';
-import HomeScreen from '../screens/home';
-import WatchListScreen from '../screens/watchlist';
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import React from "react";
+import Icon from "react-native-vector-icons/Ionicons";
+import { BaseColors } from "../configs/theme";
+import { ROUTES } from "../constants";
+import HomeScreen from "../screens/home";
+import WatchListScreen from "../screens/watchlist";
 
 const Tab = createBottomTabNavigator();
 
@@ -18,12 +18,12 @@ const tabs: TabItem[] = [
   {
     route: ROUTES.HOME_SCREEN,
     component: HomeScreen,
-    iconName: 'home',
+    iconName: "home",
   },
   {
     route: ROUTES.WATCH_LIST_SCREEN,
     component: WatchListScreen,
-    iconName: 'bookmark',
+    iconName: "bookmark",
   },
 ];
 
@@ -33,7 +33,7 @@ export const BottomTabs = (): JSX.Element => {
       lazy={true}
       tabBarOptions={{
         style: {
-          backgroundColor: '#032541',
+          backgroundColor: "#032541",
         },
       }}>
       {tabs.map(tab => (
@@ -42,7 +42,7 @@ export const BottomTabs = (): JSX.Element => {
           name={tab.route}
           component={tab.component}
           options={{
-            tabBarLabel: ({focused}) => (
+            tabBarLabel: ({ focused }) => (
               <Icon
                 name={tab.iconName}
                 size={30}

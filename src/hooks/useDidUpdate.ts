@@ -1,4 +1,4 @@
-import {useEffect, useRef} from 'react';
+import { useEffect, useRef } from "react";
 
 export function useDidUpdate(callback = () => {}, dependencies: any[] = []) {
   const isDidMounted = useRef(false);

@@ -1,12 +1,12 @@
-import React from 'react';
-import {FlatList, StyleSheet} from 'react-native';
-import FastImage from 'react-native-fast-image';
-import {useSelector} from 'react-redux';
-import {Section, Text, View} from '../../components';
-import size from '../../configs/size';
-import {BaseColors} from '../../configs/theme';
-import {getMovieCastsSelector} from '../../store/reducers/detail/selectors';
-import {getRemoteImageSrc, scale} from '../../utils';
+import React from "react";
+import { FlatList, StyleSheet } from "react-native";
+import FastImage from "react-native-fast-image";
+import { useSelector } from "react-redux";
+import { Section, Text, View } from "../../components";
+import size from "../../configs/size";
+import { BaseColors } from "../../configs/theme";
+import { getMovieCastsSelector } from "../../store/reducers/detail/selectors";
+import { getRemoteImageSrc, scale } from "../../utils";
 
 const Cast: React.FC = () => {
   const casts = useSelector(getMovieCastsSelector);
@@ -18,11 +18,11 @@ const Cast: React.FC = () => {
         extraData={casts}
         keyExtractor={item => item.id.toString()}
         // showsHorizontalScrollIndicator={false}
-        renderItem={({item}) => (
+        renderItem={({ item }) => (
           <View style={styles.card}>
             <FastImage
               style={styles.image}
-              source={{uri: getRemoteImageSrc(item.profile_path)}}
+              source={{ uri: getRemoteImageSrc(item.profile_path) }}
             />
             <Text bold title numberOfLines={2}>
               {item.name}
@@ -41,7 +41,7 @@ export default React.memo(Cast);
 
 const styles = StyleSheet.create({
   image: {
-    width: '100%',
+    width: "100%",
     height: scale(200),
     borderRadius: size.radius.sm,
   },

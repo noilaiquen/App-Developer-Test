@@ -1,2 +1,2 @@
-export * from './RootStack';
-export * from './BottomTabs';
+export * from "./RootStack";
+export * from "./BottomTabs";

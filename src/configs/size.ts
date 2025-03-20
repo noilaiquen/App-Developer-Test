@@ -1,10 +1,10 @@
-import {Dimensions} from 'react-native';
-import {scale} from '../utils/responsive';
+import { Dimensions } from "react-native";
+import { scale } from "../utils/responsive";
 
 export default {
   screen: {
-    width: Dimensions.get('screen').width,
-    height: Dimensions.get('screen').height,
+    width: Dimensions.get("screen").width,
+    height: Dimensions.get("screen").height,
   },
   spacing: {
     sm: scale(5),

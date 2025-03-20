@@ -1,12 +1,12 @@
-import {useNavigation} from '@react-navigation/native';
-import React, {FC} from 'react';
-import {Pressable, StyleSheet} from 'react-native';
-import {Avatar} from 'react-native-paper';
-import Icon from 'react-native-vector-icons/AntDesign';
-import {Text, View} from '../../components';
-import size from '../../configs/size';
-import {BaseColors} from '../../configs/theme';
-import {scale} from '../../utils';
+import { useNavigation } from "@react-navigation/native";
+import React, { FC } from "react";
+import { Pressable, StyleSheet } from "react-native";
+import { Avatar } from "react-native-paper";
+import Icon from "react-native-vector-icons/AntDesign";
+import { Text, View } from "../../components";
+import size from "../../configs/size";
+import { BaseColors } from "../../configs/theme";
+import { scale } from "../../utils";
 
 interface ProfileInfoProps {}
 
@@ -24,7 +24,7 @@ const ProfileInfo: FC<ProfileInfoProps> = () => {
         <Avatar.Text
           label="J"
           size={scale(64)}
-          style={{backgroundColor: BaseColors.BUTTERFLY_BUSH}}
+          style={{ backgroundColor: BaseColors.BUTTERFLY_BUSH }}
           color={BaseColors.WHITE}
         />
         <View>

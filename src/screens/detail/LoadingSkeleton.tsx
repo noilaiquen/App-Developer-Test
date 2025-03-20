@@ -1,7 +1,7 @@
-import {Skeleton} from 'moti/skeleton';
-import React from 'react';
-import {View} from '../../components';
-import size from '../../configs/size';
+import { Skeleton } from "moti/skeleton";
+import React from "react";
+import { View } from "../../components";
+import size from "../../configs/size";
 
 const LoadingSkeleton: React.FC = () => {
   return (
@@ -10,10 +10,10 @@ const LoadingSkeleton: React.FC = () => {
         <Skeleton width={100} height={size.spacing.lg} colorMode="light" />
       </View>
       <View mb={size.spacing.sm}>
-        <Skeleton width={'80%'} height={20} colorMode="light" />
+        <Skeleton width={"80%"} height={20} colorMode="light" />
       </View>
       <View mb={size.spacing.sm}>
-        <Skeleton width={'100%'} height={20} colorMode="light" />
+        <Skeleton width={"100%"} height={20} colorMode="light" />
       </View>
       <View pv={size.spacing.lg}>
         <Skeleton width={100} height={size.spacing.lg} colorMode="light" />

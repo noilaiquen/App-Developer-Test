@@ -1,4 +1,4 @@
-import {API_KEY} from '../../constants';
+import { API_KEY } from "../../constants";
 import {
   Cast,
   Credits,
@@ -9,8 +9,8 @@ import {
   ReleaseDate,
   ResponseList,
   Review,
-} from '../../types';
-import {Fetch} from '../../utils';
+} from "../../types";
+import { Fetch } from "../../utils";
 
 const movieUrls = {
   search: `/search/movie`,
@@ -19,11 +19,8 @@ const movieUrls = {
   popular: `/movie/popular`,
 };
 export default class MovieApi {
-  static getMovies(
-    page: number,
-    filter?: MovieFilter,
-  ): Promise<ResponseList<Movie>> {
-    const {type, order, keyword} = filter || {};
+  static getMovies(page: number, filter?: MovieFilter): Promise<ResponseList<Movie>> {
+    const { type, order, keyword } = filter || {};
     if (keyword) {
       return Fetch.get(
         `${movieUrls.search}?language=en-US&page=${page}&query=${keyword}&sort_by=${order}&region=SG&api_key=${API_KEY}`,
@@ -31,7 +28,7 @@ export default class MovieApi {
     }
     return Fetch.get(
       `${
-        movieUrls?.[type ?? 'now_playing']
+        movieUrls?.[type ?? "now_playing"]
       }?language=en-US&page=${page}&query=${keyword}&sort_by=${order}&region=SG&api_key=${API_KEY}`,
     );
   }
@@ -43,24 +40,18 @@ export default class MovieApi {
   }
 
   static getMovieDetail(id: number): Promise<MovieDetail> {
-    return Fetch.get(
-      `/movie/${id}?language=en-US&region=SG&api_key=${API_KEY}`,
-    );
+    return Fetch.get(`/movie/${id}?language=en-US&region=SG&api_key=${API_KEY}`);
   }
   static getMovieReleaseDate(id: number): Promise<ReleaseDate> {
-    return Fetch.get(
-      `/movie/${id}/release_dates?language=en-US&region=SG&api_key=${API_KEY}`,
-    );
+    return Fetch.get(`/movie/${id}/release_dates?language=en-US&region=SG&api_key=${API_KEY}`);
   }
 
-  static getMovieKeywords(id: number): Promise<{keywords: Keyword[]}> {
+  static getMovieKeywords(id: number): Promise<{ keywords: Keyword[] }> {
     return Fetch.get(`/movie/${id}/keywords?api_key=${API_KEY}`);
   }
 
   static getMovieReviews(id: number): Promise<ResponseList<Review>> {
-    return Fetch.get(
-      `/movie/${id}/reviews?language=en-US&page=1&api_key=${API_KEY}`,
-    );
+    return Fetch.get(`/movie/${id}/reviews?language=en-US&page=1&api_key=${API_KEY}`);
   }
 
   static getMovieCredits(id: number): Promise<Credits> {

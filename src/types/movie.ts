@@ -1,6 +1,6 @@
 export type MovieFilter = {
-  type?: 'now_playing' | 'upcoming' | 'popular';
-  order?: 'original_title.asc' | 'vote_average.desc' | 'release_date.desc';
+  type?: "now_playing" | "upcoming" | "popular";
+  order?: "original_title.asc" | "vote_average.desc" | "release_date.desc";
   keyword?: string;
 };
 

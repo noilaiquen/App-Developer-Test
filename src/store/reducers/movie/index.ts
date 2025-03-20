@@ -1,11 +1,6 @@
-import {AnyAction} from 'redux';
-import {Movie, MovieFilter} from '../../../types';
-import {
-  CHANGE_FILTER,
-  GET_MOVIES,
-  REFRESH_MOVIES,
-  SEARCH_MOVIES,
-} from './actionsType';
+import { AnyAction } from "redux";
+import { Movie, MovieFilter } from "../../../types";
+import { CHANGE_FILTER, GET_MOVIES, REFRESH_MOVIES, SEARCH_MOVIES } from "./actionsType";
 
 type InitState = {
   loading: boolean;
@@ -21,9 +16,9 @@ const initState: InitState = {
   movies: [],
   nextPage: 1,
   filter: {
-    type: 'now_playing',
-    order: 'original_title.asc',
-    keyword: '',
+    type: "now_playing",
+    order: "original_title.asc",
+    keyword: "",
   },
 };
 

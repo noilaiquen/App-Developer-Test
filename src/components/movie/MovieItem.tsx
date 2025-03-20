@@ -1,14 +1,14 @@
-import React, {FC} from 'react';
-import {Pressable, StyleSheet} from 'react-native';
-import FastImage from 'react-native-fast-image';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import size from '../../configs/size';
-import {BaseColors} from '../../configs/theme';
-import {MOVIE_ITEM_HEIGHT, MOVIE_ITEM_WIDTH} from '../../constants';
-import {Movie} from '../../types';
-import {getRemoteImageSrc, scale} from '../../utils';
-import {Text} from '../common/Text';
-import {View} from '../common/View';
+import React, { FC } from "react";
+import { Pressable, StyleSheet } from "react-native";
+import FastImage from "react-native-fast-image";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import size from "../../configs/size";
+import { BaseColors } from "../../configs/theme";
+import { MOVIE_ITEM_HEIGHT, MOVIE_ITEM_WIDTH } from "../../constants";
+import { Movie } from "../../types";
+import { getRemoteImageSrc, scale } from "../../utils";
+import { Text } from "../common/Text";
+import { View } from "../common/View";
 
 export interface MovieItemProps {
   movie: Movie;
@@ -16,7 +16,7 @@ export interface MovieItemProps {
   onRemove?: (movie: Movie) => void;
 }
 
-export const MovieItem: FC<MovieItemProps> = ({movie, onPress, onRemove}) => {
+export const MovieItem: FC<MovieItemProps> = ({ movie, onPress, onRemove }) => {
   return (
     <Pressable
       onPress={() => {
@@ -33,9 +33,9 @@ export const MovieItem: FC<MovieItemProps> = ({movie, onPress, onRemove}) => {
           br={size.radius.sm}>
           <FastImage
             style={styles.imageBg}
-            source={{uri: getRemoteImageSrc(movie.poster_path)}}
+            source={{ uri: getRemoteImageSrc(movie.poster_path) }}
           />
-          <View flex={1} height={'100%'} centerV ph={size.spacing.xl}>
+          <View flex={1} height={"100%"} centerV ph={size.spacing.xl}>
             <Text numberOfLines={2} title bold>
               {movie.title}
             </Text>
@@ -63,7 +63,7 @@ export const MovieItem: FC<MovieItemProps> = ({movie, onPress, onRemove}) => {
 
 const styles = StyleSheet.create({
   container: {
-    position: 'relative',
+    position: "relative",
     shadowColor: BaseColors.ALTO,
     shadowOffset: {
       width: 2,
@@ -77,11 +77,11 @@ const styles = StyleSheet.create({
     borderRadius: size.radius.sm,
   },
   imageBg: {
-    height: '100%',
+    height: "100%",
     width: scale(95),
   },
   removeBtn: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     right: 0,
     padding: size.spacing.sm,

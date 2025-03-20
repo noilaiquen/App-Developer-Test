@@ -1,5 +1,5 @@
-import {StyleSheet} from 'react-native';
-import {scale} from '../utils/responsive';
+import { StyleSheet } from "react-native";
+import { scale } from "../utils/responsive";
 
 export default StyleSheet.create({
   headline: {

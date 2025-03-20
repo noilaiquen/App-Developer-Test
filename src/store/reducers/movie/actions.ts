@@ -1,12 +1,7 @@
-import MovieApi from '../../../services/apis/movie';
-import {Movie, ResponseList} from '../../../types';
-import {createAsyncDispatch} from '../../../utils';
-import {
-  CHANGE_FILTER,
-  GET_MOVIES,
-  REFRESH_MOVIES,
-  SEARCH_MOVIES,
-} from './actionsType';
+import MovieApi from "../../../services/apis/movie";
+import { Movie, ResponseList } from "../../../types";
+import { createAsyncDispatch } from "../../../utils";
+import { CHANGE_FILTER, GET_MOVIES, REFRESH_MOVIES, SEARCH_MOVIES } from "./actionsType";
 
 export const changeFilter = (key: string, value: any) => {
   return (dispatch: any) => {
@@ -21,15 +16,13 @@ export const changeFilter = (key: string, value: any) => {
 
 export const getMovies = (isRefresh?: boolean) => {
   return async (dispatch: any, getState: any) => {
-    const {movie} = getState();
-    const {nextPage, filter} = movie;
+    const { movie } = getState();
+    const { nextPage, filter } = movie;
     dispatch(
-      createAsyncDispatch(
-        isRefresh ? REFRESH_MOVIES.ORIGIN : GET_MOVIES.ORIGIN,
-      )({
+      createAsyncDispatch(isRefresh ? REFRESH_MOVIES.ORIGIN : GET_MOVIES.ORIGIN)({
         action: () => MovieApi.getMovies(isRefresh ? 1 : nextPage, filter),
         handler: (data: ResponseList<Movie>) => {
-          const {results} = data;
+          const { results } = data;
           return results;
         },
       }),
@@ -41,7 +34,7 @@ export const searchMovies = (keyword: string) =>
   createAsyncDispatch(SEARCH_MOVIES.ORIGIN)({
     action: () => MovieApi.searchMovies(keyword),
     handler: (data: ResponseList<Movie>) => {
-      const {results} = data;
+      const { results } = data;
       return results;
     },
   });

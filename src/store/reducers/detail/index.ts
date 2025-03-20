@@ -1,10 +1,6 @@
-import {AnyAction} from 'redux';
-import {MovieDetail} from '../../../types';
-import {
-  GET_MOVIE_CREDITS,
-  GET_MOVIE_DETAIL,
-  GET_MOVIE_RELEASE_DATE,
-} from './actionsType';
+import { AnyAction } from "redux";
+import { MovieDetail } from "../../../types";
+import { GET_MOVIE_CREDITS, GET_MOVIE_DETAIL, GET_MOVIE_RELEASE_DATE } from "./actionsType";
 
 type InitState = {
   loading: boolean;
@@ -36,7 +32,7 @@ export default (state = initState, action: AnyAction) => {
         movie: {},
       };
     case GET_MOVIE_CREDITS.SUCCESS:
-      const {cast, director, writer} = action.payload;
+      const { cast, director, writer } = action.payload;
       return {
         ...state,
         movie: {
