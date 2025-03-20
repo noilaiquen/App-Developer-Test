@@ -32,6 +32,22 @@ cd movieTest
 yarn install
 ```
 
+### Configure Environment Variables
+
+```bash
+# Copy the example environment file
+cp .env.example .env
+
+# Edit the .env file and replace <your_api_key> with your actual API key
+# You can use any text editor, for example:
+nano .env
+# or
+vi .env
+# or open in your preferred code editor
+```
+
+Make sure to replace `<your_api_key>` with your actual API key in the `.env` file.
+
 ### iOS Setup
 
 ```bash
