@@ -1,13 +1,13 @@
-import React, {useLayoutEffect, useState} from 'react';
-import {Pressable, StyleSheet} from 'react-native';
-import {useTheme} from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import size from '../../../configs/size';
-import {BaseColors} from '../../../configs/theme';
-import {useDidUpdate} from '../../../hooks';
-import {scale} from '../../../utils';
-import {Text} from '../Text';
-import {View} from '../View';
+import React, { useLayoutEffect, useState } from "react";
+import { Pressable, StyleSheet } from "react-native";
+import { useTheme } from "react-native-paper";
+import Icon from "react-native-vector-icons/MaterialIcons";
+import size from "../../../configs/size";
+import { BaseColors } from "../../../configs/theme";
+import { useDidUpdate } from "../../../hooks";
+import { scale } from "../../../utils";
+import { Text } from "../Text";
+import { View } from "../View";
 
 interface DropdownItem {
   name: string;
@@ -20,13 +20,8 @@ interface DropdownProps {
   onChange: (item: DropdownItem | null) => void;
 }
 
-export const Dropdown = ({
-  label,
-  data,
-  defaultValue,
-  onChange,
-}: DropdownProps) => {
-  const {colors} = useTheme();
+export const Dropdown = ({ label, data, defaultValue, onChange }: DropdownProps) => {
+  const { colors } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<DropdownItem | null>(null);
   const onSelected = (item: DropdownItem) => {
@@ -60,10 +55,7 @@ export const Dropdown = ({
           <Text flex1 bold size={16} deviceScale>
             {selectedItem ? selectedItem.name : label}
           </Text>
-          <Icon
-            name={isOpen ? 'keyboard-arrow-down' : 'keyboard-arrow-right'}
-            size={26}
-          />
+          <Icon name={isOpen ? "keyboard-arrow-down" : "keyboard-arrow-right"} size={26} />
         </View>
       </Pressable>
       {isOpen && (
