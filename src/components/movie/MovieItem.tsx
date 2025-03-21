@@ -6,7 +6,7 @@ import size from "../../configs/size";
 import { BaseColors } from "../../configs/theme";
 import { MOVIE_ITEM_HEIGHT, MOVIE_ITEM_WIDTH } from "../../constants";
 import { Movie } from "../../types";
-import { getRemoteImageSrc, scale } from "../../utils";
+import { formatDate, getRemoteImageSrc, scale } from "../../utils";
 import { Text } from "../common/Text";
 import { View } from "../common/View";
 
@@ -40,7 +40,7 @@ export const MovieItem: FC<MovieItemProps> = ({ movie, onPress, onRemove }) => {
               {movie.title}
             </Text>
             <Text caption color={BaseColors.BOULDER}>
-              {movie.release_date}
+              {formatDate(movie.release_date)}
             </Text>
             <Text numberOfLines={2} mt={size.spacing.xl}>
               {movie.overview}

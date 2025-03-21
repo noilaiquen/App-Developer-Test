@@ -9,7 +9,13 @@ import { Score, Text, View } from "../../components";
 import size from "../../configs/size";
 import { BaseColors } from "../../configs/theme";
 import { getDetailSelector } from "../../store/reducers/detail/selectors";
-import { getMovieDuration, getRemoteImageSrc, scale } from "../../utils";
+import {
+  FORMAT_DD_MM_YYYY_WITH_SLASH,
+  formatDate,
+  getMovieDuration,
+  getRemoteImageSrc,
+  scale,
+} from "../../utils";
 import Overview from "./Overview";
 import WatchListBtn from "./WatchListBtn";
 
@@ -53,7 +59,7 @@ const MainInfo: React.FC<{
             </View>
             <View row centerH gap={4}>
               <Text paragraph color={BaseColors.GRAY}>
-                {detail.release_date} {"(SG)"}
+                {formatDate(detail.release_date, FORMAT_DD_MM_YYYY_WITH_SLASH)} {"(SG)"}
               </Text>
               <View width={4} height={4} br={2} bgColor />
               <Text paragraph color={BaseColors.GRAY}>
